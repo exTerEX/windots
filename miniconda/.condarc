@@ -1,0 +1,21 @@
+add_pip_as_python_dependency: true
+allow_other_channels: false
+allow_softlinks: true
+always_yes: true
+auto_activate_base: true
+auto_update_conda: true
+channels:
+  - schrodinger
+  - pytorch
+  - nvidia
+  - intel
+  - bioconda
+  - r
+  - conda-forge
+  - anaconda
+  - defaults
+repodata_threads: 2
+show_channel_urls: true
+ssl_verify: true
+update_dependencies: true
+use_pip: true
