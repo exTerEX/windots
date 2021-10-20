@@ -1,0 +1,8 @@
+[wsl2]
+memory=8GB
+processors=4
+localhostForwarding=true
+swap=2GB
+swapFile=%USERPROFILE%\AppData\Local\Temp\swap.vhdx
+guiApplications=true
+nestedVirtualization=true
