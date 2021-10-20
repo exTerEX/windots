@@ -1,0 +1,2 @@
+# GPG Exported Private Keys
+gpg/private-keys.asc filter=git-crypt diff=git-crypt
