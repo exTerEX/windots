@@ -1,2 +1,6 @@
 # GPG Exported Private Keys
 gpg/private-keys.asc filter=git-crypt diff=git-crypt
+
+# SSH Config and Private Keys
+ssh/id_ed25519 filter=git-crypt diff=git-crypt
+ssh/config filter=git-crypt diff=git-crypt
