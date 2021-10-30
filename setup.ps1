@@ -137,11 +137,17 @@ if (!(((Get-Item -Path "~/scoop" -Force).Attributes.ToString() -Split ", ") -Con
     (Get-Item -Path "~/scoop" -Force).Attributes += "Hidden"
 }
 
+# Winget
+if (Test-Path -Path "~/") {
+    if (!(Get-Item "~/" -Force).LinkType -eq "SymbolicLink") {
+        Write-Host "Changing file to a symbolic link to $PWD/winget/settings.json..." -ForegroundColor Blue
+        New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json" -Target "$PWD/winget/settings.json" -Force
+    }
+} else {
+    Write-Host "Symolic link to $PWD/winget/settings.json..." -ForegroundColor Blue
+    New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json" -Target "$PWD/winget/settings.json" -Force
+}
+
 # SSH
 
-
-# VSCode
-
-
 # scoop
-
