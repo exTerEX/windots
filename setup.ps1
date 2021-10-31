@@ -1,5 +1,6 @@
 Write-Host "Setting up System..." -ForegroundColor Blue
 
+$launch_pwd = $PWD
 $isadmin = (new-object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole("Administrators")
 if (-not ($isadmin)) { throw "Must have Admininstrative Priveledges..." }
 
@@ -147,6 +148,35 @@ if (Test-Path -Path "~/") {
     Write-Host "Symolic link to $PWD/winget/settings.json..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json" -Target "$PWD/winget/settings.json" -Force
 }
+
+# pymol
+If (-not (test-path "~/.pymol")) { mkdir "~/.pymol" }
+if (!(((Get-Item -Path "~/.pymol" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
+    (Get-Item -Path "~/.pymol" -Force).Attributes += "Hidden"
+}
+
+If (-not (test-path "~/.pymol/cache")) { mkdir "~/.pymol/cache" }
+If (-not (test-path "~/.pymol/scripts")) { mkdir "~/.pymol/scripts" }
+
+if (Test-Path -Path "~/pymolrc.pml") {
+    if (!(Get-Item "~/pymolrc.pml" -Force).LinkType -eq "SymbolicLink") {
+        Write-Host "Changing file to a symbolic link to $PWD/pymol/pymolrc.pml..." -ForegroundColor Blue
+        New-Item -ItemType SymbolicLink -Path "~/pymolrc.pml" -Target "$PWD/pymol/pymolrc.pml" -Force
+    }
+} else {
+    Write-Host "Symolic link to $PWD/pymol/pymolrc.pml..." -ForegroundColor Blue
+    New-Item -ItemType SymbolicLink -Path "~/pymolrc.pml" -Target "$PWD/pymol/pymolrc.pml" -Force
+}
+
+if (!(((Get-Item -Path "~/pymolrc.pml" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
+    (Get-Item -Path "~/pymolrc.pml" -Force).Attributes += "Hidden"
+}
+
+cd "~/.pymol/scripts"
+git clone "https://github.com/exTerEX/pymol-ramachandran.git"
+cd $launch_pwd
+
+# TODO: Install "matplotlib" to PyMol's conda environment at setup
 
 # SSH
 
