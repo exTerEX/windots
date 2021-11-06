@@ -34,14 +34,14 @@ if (!(((Get-Item -Path "$HOME/.config" -Force).Attributes.ToString() -Split ", "
 }
 
 # Powershell profile
-if (Test-Path -Path "$HOME/Documents/WindowsPowerShell/profile.ps1") {
-    if (!(Get-Item "$HOME/Documents/WindowsPowerShell/profile.ps1" -Force).LinkType -eq "SymbolicLink") {
+if (Test-Path -Path "C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1") {
+    if (!(Get-Item "C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1" -Force).LinkType -eq "SymbolicLink") {
         Write-Host "Changing profile.ps1 with symbolic link to $PWD/powershell/profile.ps1..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path "$HOME/Documents/WindowsPowerShell/profile.ps1" -Target "$PWD/powershell/profile.ps1" -Force
+        New-Item -ItemType SymbolicLink -Path "C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1" -Target "$PWD/powershell/profile.ps1" -Force
     }
 } else {
     Write-Host "Symolic link to $PWD/powershell/profile.ps1..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path "$HOME/Documents/WindowsPowerShell/profile.ps1" -Target "$PWD/powershell/profile.ps1" -Force
+    New-Item -ItemType SymbolicLink -Path "C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1" -Target "$PWD/powershell/profile.ps1" -Force
 }
 
 # Anaconda / Miniconda
