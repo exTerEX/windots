@@ -39,7 +39,8 @@ if (Test-Path -Path "$HOME/Documents/WindowsPowerShell/profile.ps1") {
         Write-Host "Changing profile.ps1 with symbolic link to $PWD/powershell/profile.ps1..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path "$HOME/Documents/WindowsPowerShell/profile.ps1" -Target "$PWD/powershell/profile.ps1" -Force
     }
-} else {
+}
+else {
     Write-Host "Symolic link to $PWD/powershell/profile.ps1..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path "$HOME/Documents/WindowsPowerShell/profile.ps1" -Target "$PWD/powershell/profile.ps1" -Force
 }
@@ -50,7 +51,8 @@ if (Test-Path -Path "$HOME/.condarc") {
         Write-Host "Changing file to a symbolic link to $PWD/.condarc..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path "$HOME/.condarc" -Target "$PWD/miniconda/.condarc" -Force
     }
-} else {
+}
+else {
     Write-Host "Symolic link to $PWD/.condarc..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path "$HOME/.condarc" -Target "$PWD/miniconda/.condarc" -Force
 }
@@ -65,7 +67,8 @@ if (Test-Path -Path "$HOME/.wslconfig") {
         Write-Host "Changing file to a symbolic link to $PWD/.wslconfig..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path "$HOME/.wslconfig" -Target "$PWD/wsl/windows/.wslconfig" -Force
     }
-} else {
+}
+else {
     Write-Host "Symolic link to $PWD/.wslconfig..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path "$HOME/.wslconfig" -Target "$PWD/wsl/windows/.wslconfig" -Force
 }
@@ -80,7 +83,8 @@ if (Test-Path -Path "$HOME/.gitconfig") {
         Write-Host "Changing file to a symbolic link to $PWD/.gitconfig..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path "$HOME/.gitconfig" -Target "$PWD/git/.gitconfig" -Force
     }
-} else {
+}
+else {
     Write-Host "Symolic link to $PWD/.gitconfig..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path "$HOME/.gitconfig" -Target "$PWD/git/.gitconfig" -Force
 }
@@ -95,7 +99,8 @@ if (Test-Path -Path "$HOME/.bashrc") {
         Write-Host "Changing file to a symbolic link to $PWD/.bashrc..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path "$HOME/.bashrc" -Target "$PWD/bash/.bashrc" -Force
     }
-} else {
+}
+else {
     Write-Host "Symolic link to $PWD/.bashrc..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path "$HOME/.bashrc" -Target "$PWD/bash/.bashrc" -Force
 }
@@ -109,7 +114,8 @@ if (Test-Path -Path "$HOME/.bash_profile") {
         Write-Host "Changing file to a symbolic link to $PWD/.bash_profile..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path "$HOME/.bash_profile" -Target "$PWD/bash/.bash_profile" -Force
     }
-} else {
+}
+else {
     Write-Host "Symolic link to $PWD/.bash_profile..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path "$HOME/.bash_profile" -Target "$PWD/bash/.bash_profile" -Force
 }
@@ -124,7 +130,8 @@ if (Test-Path -Path "$HOME/.config/scoop/config.json") {
         Write-Host "Changing file to a symbolic link to $PWD/$HOME/.config/scoop/config.json..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path "$HOME/.config/scoop/config.json" -Target "$PWD/scoop/config.json" -Force
     }
-} else {
+}
+else {
     Write-Host "Symolic link to $PWD/scoop/config.json..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path "$HOME/.config/scoop/config.json" -Target "$PWD/scoop/config.json" -Force
 }
@@ -144,7 +151,8 @@ if (Test-Path -Path "$HOME/") {
         Write-Host "Changing file to a symbolic link to $PWD/winget/settings.json..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json" -Target "$PWD/winget/settings.json" -Force
     }
-} else {
+}
+else {
     Write-Host "Symolic link to $PWD/winget/settings.json..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json" -Target "$PWD/winget/settings.json" -Force
 }
@@ -163,7 +171,8 @@ if (Test-Path -Path "$HOME/pymolrc.pml") {
         Write-Host "Changing file to a symbolic link to $PWD/pymol/pymolrc.pml..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path "$HOME/pymolrc.pml" -Target "$PWD/pymol/pymolrc.pml" -Force
     }
-} else {
+}
+else {
     Write-Host "Symolic link to $PWD/pymol/pymolrc.pml..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path "$HOME/pymolrc.pml" -Target "$PWD/pymol/pymolrc.pml" -Force
 }
@@ -172,12 +181,40 @@ if (!(((Get-Item -Path "$HOME/pymolrc.pml" -Force).Attributes.ToString() -Split 
     (Get-Item -Path "$HOME/pymolrc.pml" -Force).Attributes += "Hidden"
 }
 
-cd "$HOME/.pymol/scripts"
+Set-Location "$HOME/.pymol/scripts"
 git clone "https://github.com/exTerEX/pymol-ramachandran.git"
-cd $launch_pwd
+Set-Location $launch_pwd
 
 # TODO: Install "matplotlib" to PyMol's conda environment at setup
 
 # SSH
+If (-not (test-path "$HOME/.ssh")) { mkdir "$HOME/.ssh" }
+if (!(((Get-Item -Path "$HOME/.ssh" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
+    (Get-Item -Path "$HOME/.ssh" -Force).Attributes += "Hidden"
+}
+
+if (Test-Path -Path "$HOME/.ssh/id_ed25519") {
+    if (!(Get-Item "$HOME/.ssh/id_ed25519" -Force).LinkType -eq "SymbolicLink") {
+        Write-Host "Changing file to a symbolic link to $PWD/ssh/id_ed25519..." -ForegroundColor Blue
+        New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_ed25519" -Target "$PWD/ssh/id_ed25519" -Force
+    }
+}
+else {
+    Write-Host "Symolic link to $PWD/ssh/id_ed25519..." -ForegroundColor Blue
+    New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_ed25519" -Target "$PWD/ssh/id_ed25519" -Force
+}
+
+if (Test-Path -Path "$HOME/.ssh/id_ed25519.pub") {
+    if (!(Get-Item "$HOME/.ssh/id_ed25519.pub" -Force).LinkType -eq "SymbolicLink") {
+        Write-Host "Changing file to a symbolic link to $PWD/ssh/id_ed25519.pub..." -ForegroundColor Blue
+        New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_ed25519.pub" -Target "$PWD/ssh/id_ed25519.pub" -Force
+    }
+}
+else {
+    Write-Host "Symolic link to $PWD/ssh/id_ed25519.pub..." -ForegroundColor Blue
+    New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_ed25519.pub" -Target "$PWD/ssh/id_ed25519.pub" -Force
+}
+
+# GPG
 
 # scoop
