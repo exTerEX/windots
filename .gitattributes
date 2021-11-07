@@ -2,5 +2,6 @@
 gpg/*.gpg filter=git-crypt diff=git-crypt
 
 # SSH config and private keys
-ssh/id_ed25519 filter=git-crypt diff=git-crypt
+ssh/id_* filter=git-crypt diff=git-crypt
+ssh/id_*.pub !filter !diff
 ssh/config filter=git-crypt diff=git-crypt

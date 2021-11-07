@@ -193,26 +193,26 @@ if (!(((Get-Item -Path "$HOME/.ssh" -Force).Attributes.ToString() -Split ", ") -
     (Get-Item -Path "$HOME/.ssh" -Force).Attributes += "Hidden"
 }
 
-if (Test-Path -Path "$HOME/.ssh/id_ed25519") {
-    if (!(Get-Item "$HOME/.ssh/id_ed25519" -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing file to a symbolic link to $PWD/ssh/id_ed25519..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_ed25519" -Target "$PWD/ssh/id_ed25519" -Force
+if (Test-Path -Path "$HOME/.ssh/id_rsa") {
+    if (!(Get-Item "$HOME/.ssh/id_rsa" -Force).LinkType -eq "SymbolicLink") {
+        Write-Host "Changing file to a symbolic link to $PWD/ssh/id_rsa..." -ForegroundColor Blue
+        New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_rsa" -Target "$PWD/ssh/id_rsa" -Force
     }
 }
 else {
-    Write-Host "Symolic link to $PWD/ssh/id_ed25519..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_ed25519" -Target "$PWD/ssh/id_ed25519" -Force
+    Write-Host "Symolic link to $PWD/ssh/id_rsa..." -ForegroundColor Blue
+    New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_rsa" -Target "$PWD/ssh/id_rsa" -Force
 }
 
-if (Test-Path -Path "$HOME/.ssh/id_ed25519.pub") {
-    if (!(Get-Item "$HOME/.ssh/id_ed25519.pub" -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing file to a symbolic link to $PWD/ssh/id_ed25519.pub..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_ed25519.pub" -Target "$PWD/ssh/id_ed25519.pub" -Force
+if (Test-Path -Path "$HOME/.ssh/id_rsa.pub") {
+    if (!(Get-Item "$HOME/.ssh/id_rsa.pub" -Force).LinkType -eq "SymbolicLink") {
+        Write-Host "Changing file to a symbolic link to $PWD/ssh/id_rsa.pub..." -ForegroundColor Blue
+        New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_rsa.pub" -Target "$PWD/ssh/id_rsa.pub" -Force
     }
 }
 else {
-    Write-Host "Symolic link to $PWD/ssh/id_ed25519.pub..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_ed25519.pub" -Target "$PWD/ssh/id_ed25519.pub" -Force
+    Write-Host "Symolic link to $PWD/ssh/id_rsa.pub..." -ForegroundColor Blue
+    New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_rsa.pub" -Target "$PWD/ssh/id_rsa.pub" -Force
 }
 
 # GPG
