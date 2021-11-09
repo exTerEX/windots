@@ -3,7 +3,7 @@
 	email = 30706568+exTerEX@users.noreply.github.com
 	singingkey = B0C04CF48CEB0CAB
 [core]
-	autocrlf = input
+	autocrlf = true
 	editor = code
 	fileMode = true
 	hidedotfiles = false
