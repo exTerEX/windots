@@ -1,0 +1,9 @@
+{
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "files.eol": "\r\n",
+    "[powershell]": {},
+    "[shellscript]": {
+        "files.eol": "\n"
+    }
+}
