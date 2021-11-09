@@ -5,7 +5,7 @@ $PWSH_TARGET = "$PWD\powershell\profile.ps1"
 
 if (Test-Path -Path $PWSH_PATH) {
     if (!(Get-Item $PWSH_PATH -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing name of profile.ps1 to profile.ps1.old..."
+        Write-Host "Changing name of profile.ps1 to profile.ps1.old..." -ForegroundColor Blue
         Rename-Item -Path $PWSH_PATH -NewName "profile.ps1.old"
 
         Write-Host "Changing profile.ps1 with symbolic link: $PWSH_TARGET->$PWSH_PATH..." -ForegroundColor Blue
