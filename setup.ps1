@@ -35,20 +35,7 @@ if (!(((Get-Item -Path "$HOME/.config" -Force).Attributes.ToString() -Split ", "
 Invoke-Expression -Command "$PWD\powershell\setup.ps1" | Invoke-Expression
 
 # Anaconda / Miniconda
-if (Test-Path -Path "$HOME/.condarc") {
-    if (!(Get-Item "$HOME/.condarc" -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing file to a symbolic link to $PWD/.condarc..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path "$HOME/.condarc" -Target "$PWD/miniconda/.condarc" -Force
-    }
-}
-else {
-    Write-Host "Symolic link to $PWD/.condarc..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path "$HOME/.condarc" -Target "$PWD/miniconda/.condarc" -Force
-}
-
-if (!(((Get-Item -Path "$HOME/.condarc" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-    (Get-Item -Path "$HOME/.condarc" -Force).Attributes += "Hidden"
-}
+Invoke-Expression -Command "$PWD\conda\setup.ps1" | Invoke-Expression
 
 # WSL
 if (Test-Path -Path "$HOME/.wslconfig") {
