@@ -26,11 +26,6 @@ if (!(((Get-Item -Path "$HOME/.azure" -Force).Attributes.ToString() -Split ", ")
     (Get-Item -Path "$HOME/.azure" -Force).Attributes += "Hidden"
 }
 
-If (-not (test-path "$HOME/.config")) { mkdir "$HOME/.config" }
-if (!(((Get-Item -Path "$HOME/.config" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-    (Get-Item -Path "$HOME/.config" -Force).Attributes += "Hidden"
-}
-
 # Setup Powershell profile
 Invoke-Expression -Command "$PWD\powershell\setup.ps1" | Invoke-Expression
 
@@ -101,25 +96,7 @@ if (!(((Get-Item -Path "$HOME/.bash_profile" -Force).Attributes.ToString() -Spli
 }
 
 # Scoop
-if (Test-Path -Path "$HOME/.config/scoop/config.json") {
-    if (!(Get-Item "$HOME/.config/scoop/config.json" -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing file to a symbolic link to $PWD/$HOME/.config/scoop/config.json..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path "$HOME/.config/scoop/config.json" -Target "$PWD/scoop/config.json" -Force
-    }
-}
-else {
-    Write-Host "Symolic link to $PWD/scoop/config.json..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path "$HOME/.config/scoop/config.json" -Target "$PWD/scoop/config.json" -Force
-}
-
-#Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
-# TODO: Check if program is installed, run "scoop update" instead
-
-#scoop install git-crypt
-
-if (!(((Get-Item -Path "$HOME/scoop" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-    (Get-Item -Path "$HOME/scoop" -Force).Attributes += "Hidden"
-}
+Invoke-Expression -Command "$PWD\scoop\setup.ps1" | Invoke-Expression
 
 # Winget
 if (Test-Path -Path "$HOME/") {
