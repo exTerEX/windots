@@ -47,6 +47,8 @@ Invoke-Expression -Command "$PWD\bash\setup.ps1" | Invoke-Expression
 # Scoop
 Invoke-Expression -Command "$PWD\scoop\setup.ps1" | Invoke-Expression
 
+# Winget
+Invoke-Expression -Command "$PWD\winget\setup.ps1" | Invoke-Expression
 
 # WSL
 if (Test-Path -Path "$HOME/.wslconfig") {
@@ -62,18 +64,6 @@ else {
 
 if (!(((Get-Item -Path "$HOME/.wslconfig" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
     (Get-Item -Path "$HOME/.wslconfig" -Force).Attributes += "Hidden"
-}
-
-# Winget
-if (Test-Path -Path "$HOME/") {
-    if (!(Get-Item "$HOME/" -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing file to a symbolic link to $PWD/winget/settings.json..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json" -Target "$PWD/winget/settings.json" -Force
-    }
-}
-else {
-    Write-Host "Symolic link to $PWD/winget/settings.json..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json" -Target "$PWD/winget/settings.json" -Force
 }
 
 # TODO: Install "matplotlib" to PyMol's conda environment at setup
