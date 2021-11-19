@@ -3,14 +3,13 @@
 # TODO: Check if scoop isn't installed and install it.
 # TODO: Install 7zip, git, git-lfs, git-crypt
 
-$DIR = "$HOME/.config"
-$SCOOP_PATH = $DIR + "/scoop/config.json"
-$SCOOP_TARGET = "$PWD/scoop/config.json"
-
-If (-not (test-path $DIR)) { mkdir $DIR }
-if (!(((Get-Item -Path $DIR -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-    (Get-Item -Path $DIR -Force).Attributes += "Hidden"
+If (-not (test-path "$HOME/.config")) { mkdir "$HOME/.config" }
+if (!(((Get-Item -Path "$HOME/.config" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
+    (Get-Item -Path "$HOME/.config" -Force).Attributes += "Hidden"
 }
+
+$SCOOP_PATH = "$HOME/.config/scoop/config.json"
+$SCOOP_TARGET = "$PWD/scoop/config.json"
 
 if (Test-Path -Path $SCOOP_PATH) {
     if (!(Get-Item $SCOOP_PATH -Force).LinkType -eq "SymbolicLink") {
@@ -26,8 +25,6 @@ else {
     New-Item -ItemType SymbolicLink -Path $SCOOP_PATH -Target $SCOOP_TARGET -Force | Out-Null
 }
 
-$SCOOP_PATH = "$HOME/scoop"
-
-if (!(((Get-Item -Path $SCOOP_PATH -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-    (Get-Item -Path $SCOOP_PATH -Force).Attributes += "Hidden"
+if (!(((Get-Item -Path "$HOME/scoop" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
+    (Get-Item -Path "$HOME/scoop" -Force).Attributes += "Hidden"
 }
