@@ -1,6 +1,5 @@
 Write-Host "Setting up System..." -ForegroundColor Blue
 
-$launch_pwd = $PWD
 $isadmin = (new-object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole("Administrators")
 if (-not ($isadmin)) { throw "Must have Admininstrative Priveledges..." }
 
@@ -136,7 +135,7 @@ if (!(((Get-Item -Path "$HOME/pymolrc.pml" -Force).Attributes.ToString() -Split 
 
 Set-Location "$HOME/.pymol/scripts"
 git clone "https://github.com/exTerEX/pymol-ramachandran.git"
-Set-Location $launch_pwd
+Set-Location $PSScriptRoot
 
 # TODO: Install "matplotlib" to PyMol's conda environment at setup
 
