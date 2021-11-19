@@ -8,11 +8,11 @@ if (Test-Path -Path $PWSH_PATH) {
         Write-Host "Changing name of profile.ps1 to profile.ps1.old..." -ForegroundColor Blue
         Rename-Item -Path $PWSH_PATH -NewName "profile.ps1.old"
 
-        Write-Host "Changing profile.ps1 with symbolic link: $PWSH_TARGET->$PWSH_PATH..." -ForegroundColor Blue
+        Write-Host "Linking: $PWSH_TARGET->$PWSH_PATH..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path $PWSH_PATH -Target $PWSH_TARGET -Force | Out-Null
     }
 }
 else {
-    Write-Host "Creating symbolic link: $PWSH_TARGET->$PWSH_PATH..." -ForegroundColor Blue
+    Write-Host "Linking: $PWSH_TARGET->$PWSH_PATH..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path $PWSH_PATH -Target $PWSH_TARGET -Force | Out-Null
 }

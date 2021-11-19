@@ -17,12 +17,12 @@ if (Test-Path -Path $SCOOP_PATH) {
         Write-Host "Changing name of scoop/config.json to scoop/config.json.old..." -ForegroundColor Blue
         Rename-Item -Path $PWSH_PATH -NewName "config.json.old"
 
-        Write-Host "Changing profile.ps1 with symbolic link: $SCOOP_TARGET->$SCOOP_PATH..." -ForegroundColor Blue
+        Write-Host "Linking: $SCOOP_TARGET->$SCOOP_PATH..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path $SCOOP_PATH -Target $SCOOP_TARGET -Force | Out-Null
     }
 }
 else {
-    Write-Host "Creating symbolic link: $SCOOP_TARGET->$SCOOP_PATH..." -ForegroundColor Blue
+    Write-Host "Linking: $SCOOP_TARGET->$SCOOP_PATH..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path $SCOOP_PATH -Target $SCOOP_TARGET -Force | Out-Null
 }
 
