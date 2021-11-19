@@ -25,6 +25,9 @@ if (!(((Get-Item -Path "$HOME/.azure" -Force).Attributes.ToString() -Split ", ")
     (Get-Item -Path "$HOME/.azure" -Force).Attributes += "Hidden"
 }
 
+# SSH
+Invoke-Expression -Command "$PWD\ssh\setup.ps1" | Invoke-Expression
+
 # Setup Powershell profile
 Invoke-Expression -Command "$PWD\powershell\setup.ps1" | Invoke-Expression
 
@@ -138,34 +141,6 @@ git clone "https://github.com/exTerEX/pymol-ramachandran.git"
 Set-Location $PSScriptRoot
 
 # TODO: Install "matplotlib" to PyMol's conda environment at setup
-
-# SSH
-If (-not (test-path "$HOME/.ssh")) { mkdir "$HOME/.ssh" }
-if (!(((Get-Item -Path "$HOME/.ssh" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-    (Get-Item -Path "$HOME/.ssh" -Force).Attributes += "Hidden"
-}
-
-if (Test-Path -Path "$HOME/.ssh/id_rsa") {
-    if (!(Get-Item "$HOME/.ssh/id_rsa" -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing file to a symbolic link to $PWD/ssh/id_rsa..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_rsa" -Target "$PWD/ssh/id_rsa" -Force
-    }
-}
-else {
-    Write-Host "Symolic link to $PWD/ssh/id_rsa..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_rsa" -Target "$PWD/ssh/id_rsa" -Force
-}
-
-if (Test-Path -Path "$HOME/.ssh/id_rsa.pub") {
-    if (!(Get-Item "$HOME/.ssh/id_rsa.pub" -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing file to a symbolic link to $PWD/ssh/id_rsa.pub..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_rsa.pub" -Target "$PWD/ssh/id_rsa.pub" -Force
-    }
-}
-else {
-    Write-Host "Symolic link to $PWD/ssh/id_rsa.pub..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path "$HOME/.ssh/id_rsa.pub" -Target "$PWD/ssh/id_rsa.pub" -Force
-}
 
 # GPG
 
