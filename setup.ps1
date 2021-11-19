@@ -34,6 +34,9 @@ Invoke-Expression -Command "$PWD\powershell\setup.ps1" | Invoke-Expression
 # Anaconda / Miniconda
 Invoke-Expression -Command "$PWD\conda\setup.ps1" | Invoke-Expression
 
+# pymol
+Invoke-Expression -Command "$PWD\pymol\setup.ps1" | Invoke-Expression
+
 # WSL
 if (Test-Path -Path "$HOME/.wslconfig") {
     if (!(Get-Item "$HOME/.wslconfig" -Force).LinkType -eq "SymbolicLink") {
@@ -111,34 +114,6 @@ else {
     Write-Host "Symolic link to $PWD/winget/settings.json..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json" -Target "$PWD/winget/settings.json" -Force
 }
-
-# pymol
-If (-not (test-path "$HOME/.pymol")) { mkdir "$HOME/.pymol" }
-if (!(((Get-Item -Path "$HOME/.pymol" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-    (Get-Item -Path "$HOME/.pymol" -Force).Attributes += "Hidden"
-}
-
-If (-not (test-path "$HOME/.pymol/cache")) { mkdir "$HOME/.pymol/cache" }
-If (-not (test-path "$HOME/.pymol/scripts")) { mkdir "$HOME/.pymol/scripts" }
-
-if (Test-Path -Path "$HOME/pymolrc.pml") {
-    if (!(Get-Item "$HOME/pymolrc.pml" -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing file to a symbolic link to $PWD/pymol/pymolrc.pml..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path "$HOME/pymolrc.pml" -Target "$PWD/pymol/pymolrc.pml" -Force
-    }
-}
-else {
-    Write-Host "Symolic link to $PWD/pymol/pymolrc.pml..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path "$HOME/pymolrc.pml" -Target "$PWD/pymol/pymolrc.pml" -Force
-}
-
-if (!(((Get-Item -Path "$HOME/pymolrc.pml" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-    (Get-Item -Path "$HOME/pymolrc.pml" -Force).Attributes += "Hidden"
-}
-
-Set-Location "$HOME/.pymol/scripts"
-git clone "https://github.com/exTerEX/pymol-ramachandran.git"
-Set-Location $PSScriptRoot
 
 # TODO: Install "matplotlib" to PyMol's conda environment at setup
 
