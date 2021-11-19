@@ -33,4 +33,3 @@ $PYMOL_SCRIPT_LOCATION = "$HOME/.pymol/scripts"
 
 Set-Location $PYMOL_SCRIPT_LOCATION
 git clone "https://github.com/exTerEX/pymol-ramachandran.git"
-Set-Location $PSScriptRoot

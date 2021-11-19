@@ -36,6 +36,7 @@ Invoke-Expression -Command "$PWD\conda\setup.ps1" | Invoke-Expression
 
 # pymol
 Invoke-Expression -Command "$PWD\pymol\setup.ps1" | Invoke-Expression
+Set-Location $PSScriptRoot
 
 # Git
 Invoke-Expression -Command "$PWD\git\setup.ps1" | Invoke-Expression
