@@ -57,35 +57,7 @@ if (!(((Get-Item -Path "$HOME/.wslconfig" -Force).Attributes.ToString() -Split "
 }
 
 # Bash
-if (Test-Path -Path "$HOME/.bashrc") {
-    if (!(Get-Item "$HOME/.bashrc" -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing file to a symbolic link to $PWD/.bashrc..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path "$HOME/.bashrc" -Target "$PWD/bash/.bashrc" -Force
-    }
-}
-else {
-    Write-Host "Symolic link to $PWD/.bashrc..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path "$HOME/.bashrc" -Target "$PWD/bash/.bashrc" -Force
-}
-
-if (!(((Get-Item -Path "$HOME/.bashrc" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-    (Get-Item -Path "$HOME/.bashrc" -Force).Attributes += "Hidden"
-}
-
-if (Test-Path -Path "$HOME/.bash_profile") {
-    if (!(Get-Item "$HOME/.bash_profile" -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing file to a symbolic link to $PWD/.bash_profile..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path "$HOME/.bash_profile" -Target "$PWD/bash/.bash_profile" -Force
-    }
-}
-else {
-    Write-Host "Symolic link to $PWD/.bash_profile..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path "$HOME/.bash_profile" -Target "$PWD/bash/.bash_profile" -Force
-}
-
-if (!(((Get-Item -Path "$HOME/.bash_profile" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-    (Get-Item -Path "$HOME/.bash_profile" -Force).Attributes += "Hidden"
-}
+Invoke-Expression -Command "$PWD\bash\setup.ps1" | Invoke-Expression
 
 # Scoop
 Invoke-Expression -Command "$PWD\scoop\setup.ps1" | Invoke-Expression
