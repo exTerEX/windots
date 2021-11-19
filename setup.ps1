@@ -41,6 +41,13 @@ Set-Location $PSScriptRoot
 # Git
 Invoke-Expression -Command "$PWD\git\setup.ps1" | Invoke-Expression
 
+# Bash
+Invoke-Expression -Command "$PWD\bash\setup.ps1" | Invoke-Expression
+
+# Scoop
+Invoke-Expression -Command "$PWD\scoop\setup.ps1" | Invoke-Expression
+
+
 # WSL
 if (Test-Path -Path "$HOME/.wslconfig") {
     if (!(Get-Item "$HOME/.wslconfig" -Force).LinkType -eq "SymbolicLink") {
@@ -56,12 +63,6 @@ else {
 if (!(((Get-Item -Path "$HOME/.wslconfig" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
     (Get-Item -Path "$HOME/.wslconfig" -Force).Attributes += "Hidden"
 }
-
-# Bash
-Invoke-Expression -Command "$PWD\bash\setup.ps1" | Invoke-Expression
-
-# Scoop
-Invoke-Expression -Command "$PWD\scoop\setup.ps1" | Invoke-Expression
 
 # Winget
 if (Test-Path -Path "$HOME/") {
