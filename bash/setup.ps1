@@ -6,14 +6,14 @@ $BASH_TARGET = "$PWD\bash\.bashrc"
 if (Test-Path -Path $BASH_PATH) {
     if (!(Get-Item $BASH_PATH -Force).LinkType -eq "SymbolicLink") {
         Write-Host "Changing name of .bashrc to .bashrc.old..." -ForegroundColor Blue
-        Rename-Item -Path $CONDA_PATH -NewName ".bashrc.old"
+        Rename-Item -Path $BASH_PATH -NewName ".bashrc.old"
 
-        Write-Host "Linking: $CONDA_TARGET->$CONDA_PATH..." -ForegroundColor Blue
+        Write-Host "Linking: $BASH_TARGET->$BASH_PATH..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path $BASH_PATH -Target $BASH_TARGET -Force
     }
 }
 else {
-    Write-Host "Linking: $CONDA_TARGET->$CONDA_PATH..." -ForegroundColor Blue
+    Write-Host "Linking: $BASH_TARGET->$BASH_PATH..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path $BASH_PATH -Target $BASH_TARGET -Force
 }
 
@@ -27,14 +27,14 @@ $BASH_TARGET = "$PWD\bash\.bash_profile"
 if (Test-Path -Path $BASH_PATH) {
     if (!(Get-Item $BASH_PATH -Force).LinkType -eq "SymbolicLink") {
         Write-Host "Changing name of .bash_profile to .bash_profile.old..." -ForegroundColor Blue
-        Rename-Item -Path $CONDA_PATH -NewName ".bash_profile.old"
+        Rename-Item -Path $BASH_PATH -NewName ".bash_profile.old"
 
-        Write-Host "Linking: $CONDA_TARGET->$CONDA_PATH..." -ForegroundColor Blue
+        Write-Host "Linking: $BASH_TARGET->$BASH_PATH..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path $BASH_PATH -Target $BASH_TARGET -Force
     }
 }
 else {
-    Write-Host "Linking: $CONDA_TARGET->$CONDA_PATH..." -ForegroundColor Blue
+    Write-Host "Linking: $BASH_TARGET->$BASH_PATH..." -ForegroundColor Blue
     New-Item -ItemType SymbolicLink -Path $BASH_PATH -Target $BASH_TARGET -Force
 }
 

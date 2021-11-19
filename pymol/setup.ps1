@@ -14,7 +14,7 @@ $PYMOL_TARGET = "$PWD\pymol\pymolrc.pml"
 if (Test-Path -Path $PYMOL_PATH) {
     if (!(Get-Item $PYMOL_PATH -Force).LinkType -eq "SymbolicLink") {
         Write-Host "Changing name of pymolrc.pml to pymolrc.pml.old..." -ForegroundColor Blue
-        Rename-Item -Path $CONDA_PATH -NewName "pymolrc.pml.old"
+        Rename-Item -Path $PYMOL_PATH -NewName "pymolrc.pml.old"
 
         Write-Host "Linking: $PYMOL_TARGET->$PYMOL_PATH..." -ForegroundColor Blue
         New-Item -ItemType SymbolicLink -Path $PYMOL_PATH -Target $PYMOL_TARGET -Force
