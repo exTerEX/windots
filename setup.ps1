@@ -37,6 +37,9 @@ Invoke-Expression -Command "$PWD\conda\setup.ps1" | Invoke-Expression
 # pymol
 Invoke-Expression -Command "$PWD\pymol\setup.ps1" | Invoke-Expression
 
+# Git
+Invoke-Expression -Command "$PWD\git\setup.ps1" | Invoke-Expression
+
 # WSL
 if (Test-Path -Path "$HOME/.wslconfig") {
     if (!(Get-Item "$HOME/.wslconfig" -Force).LinkType -eq "SymbolicLink") {
@@ -51,22 +54,6 @@ else {
 
 if (!(((Get-Item -Path "$HOME/.wslconfig" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
     (Get-Item -Path "$HOME/.wslconfig" -Force).Attributes += "Hidden"
-}
-
-# Git
-if (Test-Path -Path "$HOME/.gitconfig") {
-    if (!(Get-Item "$HOME/.gitconfig" -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing file to a symbolic link to $PWD/.gitconfig..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path "$HOME/.gitconfig" -Target "$PWD/git/.gitconfig" -Force
-    }
-}
-else {
-    Write-Host "Symolic link to $PWD/.gitconfig..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path "$HOME/.gitconfig" -Target "$PWD/git/.gitconfig" -Force
-}
-
-if (!(((Get-Item -Path "$HOME/.gitconfig" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-    (Get-Item -Path "$HOME/.gitconfig" -Force).Attributes += "Hidden"
 }
 
 # Bash
