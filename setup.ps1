@@ -25,10 +25,21 @@ if (!(((Get-Item -Path "$HOME/.azure" -Force).Attributes.ToString() -Split ", ")
     (Get-Item -Path "$HOME/.azure" -Force).Attributes += "Hidden"
 }
 
+If (-not (test-path "$HOME/repo")) { mkdir "$HOME/repo" }
+if (!(((Get-Item -Path "$HOME/repo" -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
+    (Get-Item -Path "$HOME/repo" -Force).Attributes += "Hidden"
+}
+
+# Scoop
+Invoke-Expression -Command "$PWD\scoop\setup.ps1" | Invoke-Expression
+
+# Winget
+Invoke-Expression -Command "$PWD\winget\setup.ps1" | Invoke-Expression
+
 # SSH
 Invoke-Expression -Command "$PWD\ssh\setup.ps1" | Invoke-Expression
 
-# Setup Powershell profile
+# Powershell
 Invoke-Expression -Command "$PWD\powershell\setup.ps1" | Invoke-Expression
 
 # Anaconda / Miniconda
@@ -43,12 +54,6 @@ Invoke-Expression -Command "$PWD\git\setup.ps1" | Invoke-Expression
 
 # Bash
 Invoke-Expression -Command "$PWD\bash\setup.ps1" | Invoke-Expression
-
-# Scoop
-Invoke-Expression -Command "$PWD\scoop\setup.ps1" | Invoke-Expression
-
-# Winget
-Invoke-Expression -Command "$PWD\winget\setup.ps1" | Invoke-Expression
 
 # WSL
 if (Test-Path -Path "$HOME/.wslconfig") {
@@ -66,8 +71,4 @@ if (!(((Get-Item -Path "$HOME/.wslconfig" -Force).Attributes.ToString() -Split "
     (Get-Item -Path "$HOME/.wslconfig" -Force).Attributes += "Hidden"
 }
 
-# TODO: Install "matplotlib" to PyMol's conda environment at setup
-
 # GPG
-
-# scoop

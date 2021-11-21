@@ -14,12 +14,12 @@ if (Test-Path -Path $SSH_PATH) {
         Rename-Item -Path $SSH_PATH -NewName "id_rsa.old"
 
         Write-Host "Linking: $SSH_TARGET->$SSH_PATH..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force
+        New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force | Out-Null
     }
 }
 else {
     Write-Host "Linking: $SSH_TARGET->$SSH_PATH..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force
+    New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force | Out-Null
 }
 
 $SSH_PATH = "$HOME\.ssh\id_rsa.pub"
@@ -31,12 +31,12 @@ if (Test-Path -Path $SSH_PATH) {
         Rename-Item -Path $SSH_PATH -NewName "id_rsa.pub.old"
 
         Write-Host "Linking: $SSH_TARGET->$SSH_PATH..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force
+        New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force | Out-Null
     }
 }
 else {
     Write-Host "Linking: $SSH_TARGET->$SSH_PATH..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force
+    New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force | Out-Null
 }
 
 $SSH_PATH = "$HOME\.ssh\known_hosts"
@@ -48,12 +48,12 @@ if (Test-Path -Path $SSH_PATH) {
         Rename-Item -Path $SSH_PATH -NewName "known_hosts.old"
 
         Write-Host "Linking: $SSH_TARGET->$SSH_PATH..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force
+        New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force | Out-Null
     }
 }
 else {
     Write-Host "Linking: $SSH_TARGET->$SSH_PATH..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force
+    New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force | Out-Null
 }
 
 $SSH_PATH = "$HOME\.ssh\config"
@@ -65,10 +65,10 @@ if (Test-Path -Path $SSH_PATH) {
         Rename-Item -Path $SSH_PATH -NewName "config.old"
 
         Write-Host "Linking: $SSH_TARGET->$SSH_PATH..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force
+        New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force | Out-Null
     }
 }
 else {
     Write-Host "Linking: $SSH_TARGET->$SSH_PATH..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force
+    New-Item -ItemType SymbolicLink -Path $SSH_PATH -Target $SSH_TARGET -Force | Out-Null
 }

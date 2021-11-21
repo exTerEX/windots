@@ -9,12 +9,12 @@ if (Test-Path -Path $GIT_PATH) {
         Rename-Item -Path $GIT_PATH -NewName ".gitconfig.old"
 
         Write-Host "Linking: $GIT_TARGET->$GIT_PATH..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path $GIT_PATH -Target $GIT_TARGET -Force
+        New-Item -ItemType SymbolicLink -Path $GIT_PATH -Target $GIT_TARGET -Force | Out-Null
     }
 }
 else {
     Write-Host "Linking: $GIT_TARGET->$GIT_PATH..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path $GIT_PATH -Target $GIT_TARGET -Force
+    New-Item -ItemType SymbolicLink -Path $GIT_PATH -Target $GIT_TARGET -Force | Out-Null
 }
 
 if (!(((Get-Item -Path $GIT_PATH -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {

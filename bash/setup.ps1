@@ -9,12 +9,12 @@ if (Test-Path -Path $BASH_PATH) {
         Rename-Item -Path $BASH_PATH -NewName ".bashrc.old"
 
         Write-Host "Linking: $BASH_TARGET->$BASH_PATH..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path $BASH_PATH -Target $BASH_TARGET -Force
+        New-Item -ItemType SymbolicLink -Path $BASH_PATH -Target $BASH_TARGET -Force | Out-Null
     }
 }
 else {
     Write-Host "Linking: $BASH_TARGET->$BASH_PATH..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path $BASH_PATH -Target $BASH_TARGET -Force
+    New-Item -ItemType SymbolicLink -Path $BASH_PATH -Target $BASH_TARGET -Force | Out-Null
 }
 
 if (!(((Get-Item -Path $BASH_PATH -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
@@ -30,12 +30,12 @@ if (Test-Path -Path $BASH_PATH) {
         Rename-Item -Path $BASH_PATH -NewName ".bash_profile.old"
 
         Write-Host "Linking: $BASH_TARGET->$BASH_PATH..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path $BASH_PATH -Target $BASH_TARGET -Force
+        New-Item -ItemType SymbolicLink -Path $BASH_PATH -Target $BASH_TARGET -Force | Out-Null
     }
 }
 else {
     Write-Host "Linking: $BASH_TARGET->$BASH_PATH..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path $BASH_PATH -Target $BASH_TARGET -Force
+    New-Item -ItemType SymbolicLink -Path $BASH_PATH -Target $BASH_TARGET -Force | Out-Null
 }
 
 if (!(((Get-Item -Path $BASH_PATH -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {

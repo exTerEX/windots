@@ -9,10 +9,10 @@ if (Test-Path -Path $WINGET_PATH) {
         Rename-Item -Path $WINGET_PATH -NewName "settings.json.old"
 
         Write-Host "Linking: $WINGET_TARGET->$WINGET_PATH..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path $WINGET_PATH -Target $WINGET_TARGET -Force
+        New-Item -ItemType SymbolicLink -Path $WINGET_PATH -Target $WINGET_TARGET -Force | Out-Null
     }
 }
 else {
     Write-Host "Linking: $WINGET_TARGET->$WINGET_PATH..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path $WINGET_PATH -Target $WINGET_TARGET -Force
+    New-Item -ItemType SymbolicLink -Path $WINGET_PATH -Target $WINGET_TARGET -Force | Out-Null
 }

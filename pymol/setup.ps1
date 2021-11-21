@@ -17,12 +17,12 @@ if (Test-Path -Path $PYMOL_PATH) {
         Rename-Item -Path $PYMOL_PATH -NewName "pymolrc.pml.old"
 
         Write-Host "Linking: $PYMOL_TARGET->$PYMOL_PATH..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path $PYMOL_PATH -Target $PYMOL_TARGET -Force
+        New-Item -ItemType SymbolicLink -Path $PYMOL_PATH -Target $PYMOL_TARGET -Force | Out-Null
     }
 }
 else {
     Write-Host "Linking: $PYMOL_TARGET->$PYMOL_PATH..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path $PYMOL_PATH -Target $PYMOL_TARGET -Force
+    New-Item -ItemType SymbolicLink -Path $PYMOL_PATH -Target $PYMOL_TARGET -Force | Out-Null
 }
 
 if (!(((Get-Item -Path $PYMOL_PATH -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
