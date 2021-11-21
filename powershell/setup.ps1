@@ -1,18 +1,9 @@
 #!/usr/bin/env pwsh
 
-$PWSH_PATH = "C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1"
-$PWSH_TARGET = "$PWD\powershell\profile.ps1"
+# Create new machine scoped variables.
 
-if (Test-Path -Path $PWSH_PATH) {
-    if (!(Get-Item $PWSH_PATH -Force).LinkType -eq "SymbolicLink") {
-        Write-Host "Changing name of profile.ps1 to profile.ps1.old..." -ForegroundColor Blue
-        Rename-Item -Path $PWSH_PATH -NewName "profile.ps1.old"
+Set-Item -Path env:powershell -Value "C:\Windows\System32\WindowsPowerShell\v1.0"
+Set-Item -Path env:pwsh -Value env:powershell
 
-        Write-Host "Linking: $PWSH_TARGET->$PWSH_PATH..." -ForegroundColor Blue
-        New-Item -ItemType SymbolicLink -Path $PWSH_PATH -Target $PWSH_TARGET -Force | Out-Null
-    }
-}
-else {
-    Write-Host "Linking: $PWSH_TARGET->$PWSH_PATH..." -ForegroundColor Blue
-    New-Item -ItemType SymbolicLink -Path $PWSH_PATH -Target $PWSH_TARGET -Force | Out-Null
-}
+# Create softlink to 'profile.ps1'.
+Create-Softlink -Path "$env:powershell\profile.ps1" -Target "$PSScriptRoot\profile.ps1"
