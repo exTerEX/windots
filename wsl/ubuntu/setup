@@ -18,104 +18,103 @@ else
     echo "add-apt-repository not available"
 fi
 
-# Running under WSL (Windows Subsystem for Linux)
-if cat /proc/version | grep -q microsoft; then
-    echo "Running in WSL mode..."
+# Path to ubuntu dotfiles
+ROOT=$(cd -P -- "$(dirname -- "$0")" && cd ../.. && pwd -P)
+DOTFILES=$ROOT/wsl/ubuntu
 
-    # Windows User path
-    USERPATH=/mnt/c/Users/$(powershell.exe '$env:UserName' | sed -e 's/\r//g')
+# *********************************************************
+# Create standard folders
+# *********************************************************
 
-    # Find .gitignore in Windows or import from dotfiles
-    if [ -e $USERPATH/.gitconfig ]; then
-        echo "Using Windows .gitconfig file..."
-        sudo ln -sf $USERPATH/.gitconfig $HOME/
-        sudo chown -h $(whoami):$(whoami) $HOME/.gitconfig
-    else
-        echo "Using repo .gitconfig file..."
-        sudo ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.gitconfig $HOME/
-        sudo chown -h $(whoami):$(whoami) $HOME/.gitconfig
-    fi
-
-    # Find .gitignore in Windows or import from dotfiles
-    if [ -e $USERPATH/.gitignore ]; then
-        echo "Using Windows .gitignore file..."
-        sudo ln -sf $USERPATH/.gitignore $HOME/
-        sudo chown -h $(whoami):$(whoami) $HOME/.gitignore
-    else
-        echo "Using repo .gitignore file..."
-        ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.gitignore $HOME/
-        chown -h $(whoami):$(whoami) $HOME/.gitignore
-    fi
-
-    # Find SSH key in Windows and import to WSL
-    if [ ! -e $HOME/.ssh ]; then
-        echo "Copying .ssh files to .ssh/..."
-        cp -r $USERPATH/.ssh $HOME/
-    fi
-
-    sudo chmod 600 $HOME/.ssh/*
-
-    if [ ! -h $HOME/.ssh/known_hosts ]; then
-        echo "Creating symlink to known_hosts..."
-        sudo ln -sf $USERPATH/.ssh/known_hosts $HOME/.ssh/known_hosts
-        sudo chown -h $(whoami):$(whoami) $HOME/.ssh/known_hosts
-    fi
-
-    # TODO: Find gpg key and import from Windows
-else
-    echo "Running in normal mode..."
-
-    # Import .gitconfig
-    if [[ ! -e $HOME/.gitconfig ]]; then
-        echo "Using repo .gitconfig file..."
-        ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.gitconfig $HOME/
-        chown -h $(whoami):$(whoami) $HOME/.gitconfig
-    fi
-
-    # Import .gitignore
-    if [[ ! -e $HOME/.gitignore ]]; then
-        echo "Using repo .gitignore file..."
-        ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.gitignore $HOME/
-        chown -h $(whoami):$(whoami) $HOME/.gitignore
-    fi
-fi
-
-# Create user's private bin if not exist
-if [ ! -d "$HOME/bin" ] ; then
+if [ ! -d $HOME/bin ] ; then
     mkdir -p $HOME/bin
 fi
 
-if [ ! -d "$HOME/.local/bin" ] ; then
+if [ ! -d $HOME/.local/bin ] ; then
     mkdir -p $HOME/.local/bin
 fi
 
-# tmux.conf
-ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.tmux.conf $HOME/
-chown -h $(whoami):$(whoami) $HOME/.tmux.conf
-
-# gpg-agent.conf
-ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/gpg-agent.conf $HOME/
-chown -h $(whoami):$(whoami) $HOME/gpg-agent.conf
-
-# .vimrc
-ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.vimrc $HOME/
-chown -h $(whoami):$(whoami) $HOME/.vimrc
-
-# .wgetrc
-ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.wgetrc $HOME/
-chown -h $(whoami):$(whoami) $HOME/.wgetrc
-
-# .condarc
-ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.condarc $HOME/
-chown -h $(whoami):$(whoami) $HOME/.condarc
-
-# Link .custom folder
-if [ ! -h $HOME/.custom ]; then
-    ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.custom $HOME/
-    chown -h $(whoami):$(whoami) $HOME/.custom
+if [ ! -d $HOME/.ssh ] ; then
+    mkdir -p $HOME/.local/bin
 fi
 
-if [ -n "$BASH_VERSION" ]; then
+# *********************************************************
+# Link folders
+# *********************************************************
+
+if [ ! -h $HOME/.custom ]; then
+    ln -sf $DOTFILES/.custom $HOME/
+    sudo chown -h $(whoami):$(whoami) $HOME/.custom
+fi
+
+# *********************************************************
+# Install .gitconfig and git configurations
+# *********************************************************
+
+if [ -e $HOME/.gitconfig ]; then
+    sudo mv $HOME/.gitconfig $HOME/.gitconfig.old
+fi
+
+sudo ln -sf $DOTFILES/git/.gitconfig $HOME/.gitconfig
+sudo chown -h $(whoami):$(whoami) $HOME/.gitconfig
+
+# *********************************************************
+# Install ssh configurations and keys
+# *********************************************************
+
+if command -v openssh-client > /dev/null 2>&1; then
+    sudo apt -y install --no-install-recommends openssh-client
+fi
+
+sudo ln -sf $ROOT/ssh/id_rsa $HOME/.ssh/id_rsa
+sudo ln -sf $ROOT/ssh/id_rsa.pub $HOME/.ssh/id_rsa.pub
+sudo ln -sf $ROOT/ssh/config $HOME/.ssh/config
+sudo ln -sf $ROOT/ssh/known_hosts $HOME/.ssh/known_hosts
+
+sudo chmod 600 $HOME/.ssh/*
+
+# *********************************************************
+# Install gpg configurations and keys
+# *********************************************************
+
+if command -v gpg2 > /dev/null 2>&1; then
+    sudo apt -y install --no-install-recommends gpg2
+fi
+
+if [ ! -e $HOME/public_keys.gpg ]; then
+    sudo ln -sf $ROOT/gpg/public_keys.gpg $HOME/public_keys.gpg
+fi
+
+if [ ! -e $HOME/private_keys.gpg ]; then
+    sudo ln -sf $ROOT/gpg/private_keys.gpg $HOME/private_keys.gpg
+fi
+
+gpg2 --import $HOME/private_keys.gpg
+
+sudo ln -sf $DOTFILES/gpg/gpg-agent.conf $HOME/gpg-agent.conf
+sudo chown -h $(whoami):$(whoami) $HOME/gpg-agent.conf
+
+# *********************************************************
+# Vim
+# *********************************************************
+
+sudo ln -sf $DOTFILES/vim/.vimrc $HOME/.vimrc
+sudo chown -h $(whoami):$(whoami) $HOME/.vimrc
+
+# *********************************************************
+# Conda
+# *********************************************************
+
+sh $DOTFILES/script/conda.sh
+
+sudo ln -sf $ROOT/conda/.condarc $HOME/.condarc
+sudo chown -h $(whoami):$(whoami) $HOME/.condarc
+
+# *********************************************************
+# Oh-my-bash installation
+# *********************************************************
+
+if [ -n $BASH_VERSION ]; then
     ##### FROM: Oh-My-Bash installer.sh #####
 
     # Copyright 2017-2020 Toan Nguyen and contributors (https://github.com/ohmybash/oh-my-bash/graphs/contributors)
@@ -236,23 +235,28 @@ if [ -n "$BASH_VERSION" ]; then
         # exec bash; source $HOME/.bashrc
     }
 
+    ##### END #####
+
     # Run script only if oh-my-bash isn't installed
     if [[ ! -e $HOME/.oh-my-bash ]]; then
         main
     fi
-
-    ##### END #####
-
-    # Link custom .bashrc
-    if [[ ! -h $HOME/.bashrc ]]; then
-        ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.bashrc $HOME/
-    fi
-
-    chown -h $(whoami):$(whoami) $HOME/.bashrc
 fi
 
-# Link custom .profile
-ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.profile $HOME/.profile
+# *********************************************************
+# Install custom .bashrc
+# *********************************************************
+
+if [ -n $BASH_VERSION ]; then
+    sudo ln -sf $DOTFILES/bash/.bashrc $HOME/.bashrc
+    sudo chown -h $(whoami):$(whoami) $HOME/.bashrc
+fi
+
+# *********************************************************
+# Install custom .profile
+# *********************************************************
+
+ln -sf $DOTFILES/bash/.profile $HOME/.profile
 chown -h $(whoami):$(whoami) $HOME/.profile
 
 exec bash; source $HOME/.bashrc
