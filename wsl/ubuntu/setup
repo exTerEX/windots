@@ -1,0 +1,258 @@
+#!/bin/sh
+
+# Let script exit when a command fail
+set -o errexit
+
+# Add Personal Package Archives
+if command -v add-apt-repository > /dev/null 2>&1; then
+    # python PPA
+    sudo add-apt-repository --enable-source --yes ppa:deadsnakes/ppa
+
+    # R PPA
+    sudo apt-add-repository --enable-source --yes ppa:marutter/rrutter4.0
+    sudo apt-add-repository --enable-source --yes ppa:c2d4u.team/c2d4u4.0+
+
+    # Golang
+    sudo apt-add-repository --enable-source --yes ppa:longsleep/golang-backports
+else
+    echo "add-apt-repository not available"
+fi
+
+# Running under WSL (Windows Subsystem for Linux)
+if cat /proc/version | grep -q microsoft; then
+    echo "Running in WSL mode..."
+
+    # Windows User path
+    USERPATH=/mnt/c/Users/$(powershell.exe '$env:UserName' | sed -e 's/\r//g')
+
+    # Find .gitignore in Windows or import from dotfiles
+    if [ -e $USERPATH/.gitconfig ]; then
+        echo "Using Windows .gitconfig file..."
+        sudo ln -sf $USERPATH/.gitconfig $HOME/
+        sudo chown -h $(whoami):$(whoami) $HOME/.gitconfig
+    else
+        echo "Using repo .gitconfig file..."
+        sudo ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.gitconfig $HOME/
+        sudo chown -h $(whoami):$(whoami) $HOME/.gitconfig
+    fi
+
+    # Find .gitignore in Windows or import from dotfiles
+    if [ -e $USERPATH/.gitignore ]; then
+        echo "Using Windows .gitignore file..."
+        sudo ln -sf $USERPATH/.gitignore $HOME/
+        sudo chown -h $(whoami):$(whoami) $HOME/.gitignore
+    else
+        echo "Using repo .gitignore file..."
+        ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.gitignore $HOME/
+        chown -h $(whoami):$(whoami) $HOME/.gitignore
+    fi
+
+    # Find SSH key in Windows and import to WSL
+    if [ ! -e $HOME/.ssh ]; then
+        echo "Copying .ssh files to .ssh/..."
+        cp -r $USERPATH/.ssh $HOME/
+    fi
+
+    sudo chmod 600 $HOME/.ssh/*
+
+    if [ ! -h $HOME/.ssh/known_hosts ]; then
+        echo "Creating symlink to known_hosts..."
+        sudo ln -sf $USERPATH/.ssh/known_hosts $HOME/.ssh/known_hosts
+        sudo chown -h $(whoami):$(whoami) $HOME/.ssh/known_hosts
+    fi
+
+    # TODO: Find gpg key and import from Windows
+else
+    echo "Running in normal mode..."
+
+    # Import .gitconfig
+    if [[ ! -e $HOME/.gitconfig ]]; then
+        echo "Using repo .gitconfig file..."
+        ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.gitconfig $HOME/
+        chown -h $(whoami):$(whoami) $HOME/.gitconfig
+    fi
+
+    # Import .gitignore
+    if [[ ! -e $HOME/.gitignore ]]; then
+        echo "Using repo .gitignore file..."
+        ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.gitignore $HOME/
+        chown -h $(whoami):$(whoami) $HOME/.gitignore
+    fi
+fi
+
+# Create user's private bin if not exist
+if [ ! -d "$HOME/bin" ] ; then
+    mkdir -p $HOME/bin
+fi
+
+if [ ! -d "$HOME/.local/bin" ] ; then
+    mkdir -p $HOME/.local/bin
+fi
+
+# tmux.conf
+ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.tmux.conf $HOME/
+chown -h $(whoami):$(whoami) $HOME/.tmux.conf
+
+# gpg-agent.conf
+ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/gpg-agent.conf $HOME/
+chown -h $(whoami):$(whoami) $HOME/gpg-agent.conf
+
+# .vimrc
+ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.vimrc $HOME/
+chown -h $(whoami):$(whoami) $HOME/.vimrc
+
+# .wgetrc
+ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.wgetrc $HOME/
+chown -h $(whoami):$(whoami) $HOME/.wgetrc
+
+# .condarc
+ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.condarc $HOME/
+chown -h $(whoami):$(whoami) $HOME/.condarc
+
+# Link .custom folder
+if [ ! -h $HOME/.custom ]; then
+    ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.custom $HOME/
+    chown -h $(whoami):$(whoami) $HOME/.custom
+fi
+
+if [ -n "$BASH_VERSION" ]; then
+    ##### FROM: Oh-My-Bash installer.sh #####
+
+    # Copyright 2017-2020 Toan Nguyen and contributors (https://github.com/ohmybash/oh-my-bash/graphs/contributors)
+
+    # Permission is hereby granted, free of charge, to any person obtaining a copy
+    # of this software and associated documentation files (the "Software"), to deal
+    # in the Software without restriction, including without limitation the rights
+    # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    # copies of the Software, and to permit persons to whom the Software is
+    # furnished to do so, subject to the following conditions:
+    #
+    # The above copyright notice and this permission notice shall be included in all
+    # copies or substantial portions of the Software.
+    #
+    # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    # SOFTWARE.
+
+    main() {
+        # Use colors, but only if connected to a terminal, and that terminal
+        # supports them.
+        if which tput >/dev/null 2>&1; then
+            ncolors=$(tput colors)
+        fi
+        if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
+            RED="$(tput setaf 1)"
+            GREEN="$(tput setaf 2)"
+            YELLOW="$(tput setaf 3)"
+            BLUE="$(tput setaf 4)"
+            BOLD="$(tput bold)"
+            NORMAL="$(tput sgr0)"
+        else
+            RED=""
+            GREEN=""
+            YELLOW=""
+            BLUE=""
+            BOLD=""
+            NORMAL=""
+        fi
+
+        # Only enable exit-on-error after the non-critical colorization stuff,
+        # which may fail on systems lacking tput or terminfo
+        set -e
+
+        # Checks the minium version of bash (v4) installed,
+        # stops the installation if check fails
+        if [ -n $BASH_VERSION ]; then
+            bash_major_version=$(echo $BASH_VERSION | cut -d '.' -f 1)
+            if [ "${bash_major_version}" -lt "4" ]; then
+                printf "Error: Bash 4 required for Oh My Bash.\n"
+                printf "Error: Upgrade Bash and try again.\n"
+                exit 1
+            fi
+        fi
+
+        if [ ! -n "$OSH" ]; then
+            OSH=$HOME/.oh-my-bash
+        fi
+
+        if [ -d "$OSH" ]; then
+            printf "${YELLOW}You already have Oh My Bash installed.${NORMAL}\n"
+            printf "You'll need to remove $OSH if you want to re-install.\n"
+            exit
+        fi
+
+        # Prevent the cloned repository from having insecure permissions. Failing to do
+        # so causes compinit() calls to fail with "command not found: compdef" errors
+        # for users with insecure umasks (e.g., "002", allowing group writability). Note
+        # that this will be ignored under Cygwin by default, as Windows ACLs take
+        # precedence over umasks except for filesystems mounted with option "noacl".
+        umask g-w,o-w
+
+        printf "${BLUE}Cloning Oh My Bash...${NORMAL}\n"
+        hash git >/dev/null 2>&1 || {
+            echo "Error: git is not installed"
+            exit 1
+        }
+        # The Windows (MSYS) Git is not compatible with normal use on cygwin
+        if [ "$OSTYPE" = cygwin ]; then
+            if git --version | grep msysgit > /dev/null; then
+            echo "Error: Windows/MSYS Git is not supported on Cygwin"
+            echo "Error: Make sure the Cygwin git package is installed and is first on the path"
+            exit 1
+            fi
+        fi
+        env git clone --depth=1 https://github.com/ohmybash/oh-my-bash.git $OSH || {
+            printf "Error: git clone of oh-my-bash repo failed\n"
+            exit 1
+        }
+
+        printf "${BLUE}Looking for an existing bash config...${NORMAL}\n"
+        if [ -f $HOME/.bashrc ] || [ -h $HOME/.bashrc ]; then
+            printf "${YELLOW}Found ~/.bashrc.${NORMAL} ${GREEN}Backing up to ~/.bashrc.pre-oh-my-bash${NORMAL}\n";
+            mv $HOME/.bashrc $HOME/.bashrc.pre-oh-my-bash;
+        fi
+
+        printf "${BLUE}Using the Oh My Bash template file and adding it to ~/.bashrc${NORMAL}\n"
+        cp $OSH/templates/bashrc.osh-template $HOME/.bashrc
+        sed "/^export OSH=/ c\\
+        export OSH=$OSH
+        " $HOME/.bashrc > $HOME/.bashrc-ombtemp
+        mv -f $HOME/.bashrc-ombtemp $HOME/.bashrc
+
+        # MOTD message :)
+        printf '%s' "$GREEN"
+        printf '%s\n' '         __                          __               __  '
+        printf '%s\n' '  ____  / /_     ____ ___  __  __   / /_  ____ ______/ /_ '
+        printf '%s\n' ' / __ \/ __ \   / __ `__ \/ / / /  / __ \/ __ `/ ___/ __ \'
+        printf '%s\n' '/ /_/ / / / /  / / / / / / /_/ /  / /_/ / /_/ (__  ) / / /'
+        printf '%s\n' '\____/_/ /_/  /_/ /_/ /_/\__, /  /_.___/\__,_/____/_/ /_/ '
+        printf '%s\n' '                        /____/                            .... is now installed!'
+        printf "%s\n" "Please look over the ~/.bashrc file to select plugins, themes, and options"
+        printf "${BLUE}${BOLD}%s${NORMAL}\n" "To keep up on the latest news and updates, follow us on GitHub: https://github.com/ohmybash/oh-my-bash"
+        # exec bash; source $HOME/.bashrc
+    }
+
+    # Run script only if oh-my-bash isn't installed
+    if [[ ! -e $HOME/.oh-my-bash ]]; then
+        main
+    fi
+
+    ##### END #####
+
+    # Link custom .bashrc
+    if [[ ! -h $HOME/.bashrc ]]; then
+        ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.bashrc $HOME/
+    fi
+
+    chown -h $(whoami):$(whoami) $HOME/.bashrc
+fi
+
+# Link custom .profile
+ln -sf $(cd -P -- "$(dirname -- "$0")" && pwd -P)/.profile $HOME/.profile
+chown -h $(whoami):$(whoami) $HOME/.profile
+
+exec bash; source $HOME/.bashrc
