@@ -12,13 +12,13 @@ if ($exepolicy -ne "Unrestricted") {
 }
 
 # Custom functions
-function Create-Dir {
-    param ([Parameter(Mandatory)][string]$Path, [switch]$NoHide)
+function New-Directory {
+    param ([Parameter(Mandatory)][string]$Path, [switch]$Hide)
 
     PROCESS {
         If (-not (test-path $Path)) { mkdir $Path }
 
-        if (!($NoHide)) {
+        if ($Hide) {
             if (!(((Get-Item -Path $Path -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
                 (Get-Item -Path $Path -Force).Attributes += "Hidden"
             }
@@ -26,7 +26,7 @@ function Create-Dir {
     }
 }
 
-function Create-Softlink {
+function Set-Softlink {
     param ([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][string]$Target, [switch]$Hide)
 
     PROCESS {
@@ -56,9 +56,9 @@ function Create-Softlink {
 Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
 # Create directories
-Create-Dir -Path "$HOME\.aws"
-Create-Dir -Path "$HOME\.azure"
-Create-Dir -Path "$HOME\repo" -NoHide
+New-Directory -Path "$HOME\.aws" -Hide
+New-Directory -Path "$HOME\.azure" -Hide
+New-Directory -Path "$HOME\repo"
 
 # Scoop
 Invoke-Expression -Command "$PSScriptRoot\scoop\setup.ps1" | Invoke-Expression
