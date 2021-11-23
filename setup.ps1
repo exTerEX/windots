@@ -91,5 +91,6 @@ Invoke-Expression -Command "$PSScriptRoot\wsl\setup.ps1" | Invoke-Expression
 Invoke-Expression -Command "$PSScriptRoot\terminal\setup.ps1" | Invoke-Expression
 
 # GPG
+Invoke-Expression -Command "$PSScriptRoot\gpg\setup.ps1" | Invoke-Expression
 
 Write-Host "Setup finished." -ForegroundColor Green
