@@ -9,6 +9,13 @@
             "keys": "ctrl+c"
         },
         {
+            "command": {
+                "action": "newTab",
+                "index": 1
+            },
+            "keys": "ctrl+shift+u"
+        },
+        {
             "command": "find",
             "keys": "ctrl+f"
         },
@@ -18,17 +25,17 @@
         },
         {
             "command": {
+                "action": "nextTab"
+            },
+            "keys": "ctrl+right"
+        },
+        {
+            "command": {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
-        },
-        {
-            "command": {
-                "action": "nextTab"
-            },
-            "keys": "ctrl+right"
         },
         {
             "command": {
@@ -46,13 +53,6 @@
         {
             "command": {
                 "action": "newTab",
-                "index": 1
-            },
-            "keys": "ctrl+shift+u"
-        },
-        {
-            "command": {
-                "action": "newTab",
                 "index": 2
             },
             "keys": "ctrl+shift+g"
@@ -60,14 +60,12 @@
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "trimBlockSelection": true,
-    "focusFollowMouse": true,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "focusFollowMouse": true,
     "profiles": {
         "defaults": {
-            "useAcrylic": true,
-            "acrylicOpacity": 0.30,
-            "font": {}
+            "acrylicOpacity": 0.29999999999999999,
+            "useAcrylic": true
         },
         "list": [
             {
@@ -84,7 +82,14 @@
                 "name": "Command Prompt"
             },
             {
+                "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+                "hidden": false,
+                "name": "Git Bash",
+                "source": "Git"
+            },
+            {
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": false,
                 "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl"
             },
@@ -95,10 +100,10 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
-                "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+                "guid": "{46ca431a-3a87-5fb3-83cd-11ececc031d2}",
                 "hidden": false,
-                "name": "Git Bash",
-                "source": "Git"
+                "name": "kali-linux",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
@@ -310,5 +315,6 @@
             "white": "#C0C0C0",
             "yellow": "#808000"
         }
-    ]
+    ],
+    "trimBlockSelection": true
 }
