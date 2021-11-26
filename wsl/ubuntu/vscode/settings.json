@@ -1,0 +1,15 @@
+{
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "[c]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "cmake.configureSettings": {
+        "CMAKE_TOOLCHAIN_FILE": "/home/exterex/lib/vcpkg/scripts/buildsystems/vcpkg.cmake"
+    },
+    "cmake.configureArgs": [
+        "-Wno-dev"
+    ],
+    "C_Cpp.vcpkg.enabled": true
+}
