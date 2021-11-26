@@ -1,0 +1,52 @@
+{
+    "breadcrumbs.enabled": false,
+    "editor.minimap.enabled": false,
+    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "editor.fontSize": 16,
+    "editor.wrappingStrategy": "simple",
+    "editor.renderWhitespace": "boundary",
+    "files.autoSave": "afterDelay",
+    "git.autorefresh": true,
+    "python.languageServer": "Pylance",
+    "[python]": {
+        "editor.wordWrap": "off",
+        "editor.wrappingStrategy": "advanced",
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "explorer.sortOrder": "type",
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "[jsonc]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace",
+        "editor.wordWrap": "on",
+        "editor.wrappingStrategy": "advanced",
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.productIconTheme": "fluent-icons",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "git.autofetchPeriod": 60,
+    "git.autoRepositoryDetection": true,
+    "git.autofetch": "all",
+    "python.formatting.autopep8Args": [
+        "--aggressive",
+        "--experimental"
+    ],
+    "jupyter.askForKernelRestart": false,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "files.associations": {
+        "LICENSE": "plaintext"
+    },
+    "powershell.promptToUpdatePackageManagement": false
+}
