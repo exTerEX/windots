@@ -1,11 +1,8 @@
-*          text=auto
+* text=auto
 
 # Scripts
 *.sh text eol=lf
 *.ps1 text eol=crlf
-
-# Windots Subsystem for Linux
-wsl/ubuntu/* text eol=lf
 
 # GPG exported private keys
 gpg/*.gpg filter=git-crypt diff=git-crypt
