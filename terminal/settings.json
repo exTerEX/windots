@@ -9,13 +9,6 @@
             "keys": "ctrl+c"
         },
         {
-            "command": {
-                "action": "newTab",
-                "index": 1
-            },
-            "keys": "ctrl+shift+u"
-        },
-        {
             "command": "find",
             "keys": "ctrl+f"
         },
@@ -42,20 +35,6 @@
                 "action": "prevTab"
             },
             "keys": "ctrl+left"
-        },
-        {
-            "command": {
-                "action": "newTab",
-                "index": 0
-            },
-            "keys": "ctrl+shift+p"
-        },
-        {
-            "command": {
-                "action": "newTab",
-                "index": 2
-            },
-            "keys": "ctrl+shift+g"
         }
     ],
     "copyFormatting": "none",
