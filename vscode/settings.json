@@ -44,7 +44,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "terminal.integrated.defaultProfile.windows": "PowerShell",
-    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.defaultProfile.linux": "zsh",
     "files.associations": {
         "LICENSE": "plaintext"
     },
