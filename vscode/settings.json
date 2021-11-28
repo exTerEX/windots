@@ -1,7 +1,7 @@
 {
     "breadcrumbs.enabled": false,
     "editor.minimap.enabled": false,
-    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "editor.fontFamily": "Consolas, 'Courier New', monospace, MesloLGM NF",
     "editor.fontSize": 16,
     "editor.wrappingStrategy": "simple",
     "editor.renderWhitespace": "boundary",
