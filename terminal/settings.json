@@ -44,7 +44,8 @@
     "profiles": {
         "defaults": {
             "acrylicOpacity": 0.29999999999999999,
-            "useAcrylic": true
+            "useAcrylic": true,
+            "fontFace": "MesloLGM NF"
         },
         "list": [
             {
