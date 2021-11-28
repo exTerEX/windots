@@ -5,5 +5,9 @@
     "[powershell]": {},
     "[shellscript]": {
         "files.eol": "\n"
+    },
+    "[jsonc]": {
+        "files.insertFinalNewline": false,
+        "files.trimFinalNewlines": true
     }
 }
