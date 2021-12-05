@@ -20,6 +20,7 @@ if ($exepolicy -ne "Unrestricted") {
     Set-ExecutionPolicy Unrestricted
 }
 
+# Custom functions
 function Hide-File {
     param([Parameter(Mandatory)][string]$Path)
 
@@ -28,7 +29,6 @@ function Hide-File {
     }
 }
 
-# Custom functions
 function New-Directory {
     param ([Parameter(Mandatory)][string]$Path, [switch]$Hide)
 
