@@ -20,6 +20,14 @@ if ($exepolicy -ne "Unrestricted") {
     Set-ExecutionPolicy Unrestricted
 }
 
+function Hide-File {
+    param([Parameter(Mandatory)][string]$Path)
+
+    if (!(((Get-Item -Path $Path -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
+        (Get-Item -Path $Path -Force).Attributes += "Hidden"
+    }
+}
+
 # Custom functions
 function New-Directory {
     param ([Parameter(Mandatory)][string]$Path, [switch]$Hide)
@@ -27,11 +35,7 @@ function New-Directory {
     PROCESS {
         If (-not (test-path $Path)) { mkdir $Path }
 
-        if ($Hide) {
-            if (!(((Get-Item -Path $Path -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-                (Get-Item -Path $Path -Force).Attributes += "Hidden"
-            }
-        }
+        if ($Hide) { Hide-File($Path) }
     }
 }
 
@@ -53,10 +57,26 @@ function Set-Softlink {
             New-Item -ItemType SymbolicLink -Path $Path -Target $Target -Force | Out-Null
         }
 
-        if ($Hide) {
-            if (!(((Get-Item -Path $Path -Force).Attributes.ToString() -Split ", ") -Contains "Hidden")) {
-                (Get-Item -Path $Path -Force).Attributes += "Hidden"
-            }
+        if ($Hide) { Hide-File($Path) }
+    }
+}
+
+function Get-Zip {
+    param ([parameter(Mandatory)][string]$Uri, [string]$DestinationPath = "$HOME/Downloads", [switch]$Extract)
+
+    PROCESS {
+        $ZippedFilePath = "$DestinationPath\$(Split-Path -Path $Uri -Leaf)"
+
+        $FileNameWithoutExtension = [System.IO.Path]::GetFileNameWithoutExtension($ZippedFilePath)
+
+        Invoke-WebRequest -Uri $Uri -OutFile $ZippedFilePath
+
+        if ($Extract) {
+            $ExtractPath = "$DestinationPath\$FileNameWithoutExtension"
+
+            Expand-Archive -LiteralPath $ZippedFilePath -DestinationPath $ExtractPath
+
+            return $ExtractPath
         }
     }
 }
