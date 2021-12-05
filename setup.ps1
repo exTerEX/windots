@@ -95,6 +95,9 @@ Invoke-Expression -Command "$PSScriptRoot\scoop\setup.ps1" | Invoke-Expression
 # Winget
 Invoke-Expression -Command "$PSScriptRoot\winget\setup.ps1" | Invoke-Expression
 
+# Git
+Invoke-Expression -Command "$PSScriptRoot\git\setup.ps1" | Invoke-Expression
+
 # SSH
 Invoke-Expression -Command "$PSScriptRoot\ssh\setup.ps1" | Invoke-Expression
 
@@ -106,9 +109,6 @@ Invoke-Expression -Command "$PSScriptRoot\conda\setup.ps1" | Invoke-Expression
 
 # pymol
 Invoke-Expression -Command "$PSScriptRoot\pymol\setup.ps1" | Invoke-Expression
-
-# Git
-Invoke-Expression -Command "$PSScriptRoot\git\setup.ps1" | Invoke-Expression
 
 # Bash
 Invoke-Expression -Command "$PSScriptRoot\bash\setup.ps1" | Invoke-Expression
