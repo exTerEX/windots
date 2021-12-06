@@ -10,20 +10,20 @@ The dotfiles contain configuration for many different programs, and settings use
 
 The repository follows a straight forward folder structure. For clearification each subdirectory and important file is explained in the table under.
 
-| Folder     | Description                                             |
-| ---------- | ------------------------------------------------------- |
-| bash       | Configuration files related to git-for-windows bash.    |
-| conda      | Configuration files related to ana- and miniconda.      |
-| git        | Configuration files related to git.                     |
-| gpg        | Key and configuration files for gpg.                    |
-| powershell | Configuration files related to powershell.              |
-| pymol      | Configuration and certification files related to pymol. |
-| scoop      | Configuration files related to scoop package manager.   |
-| ssh        | Key and configuration files related to ssh.             |
-| terminal   | Configuration files related to Windows terminal.        |
-| winget     | Configuration files related to WinGet.                  |
-| wsl        | Configuration files related to Windows-side WSL.        |
-| setup.ps1  | Main setup script.                                      |
+|       Folder | Description                                             |
+| -----------: | :------------------------------------------------------ |
+|       _bash_ | Configuration files related to git-for-windows bash.    |
+|      _conda_ | Configuration files related to ana- and miniconda.      |
+|        _git_ | Configuration files related to git.                     |
+|        _gpg_ | Key and configuration files for gpg.                    |
+| _powershell_ | Configuration files related to powershell.              |
+|      _pymol_ | Configuration and certification files related to pymol. |
+|      _scoop_ | Configuration files related to scoop package manager.   |
+|        _ssh_ | Key and configuration files related to ssh.             |
+|   _terminal_ | Configuration files related to Windows terminal.        |
+|     _winget_ | Configuration files related to WinGet.                  |
+|        _wsl_ | Configuration files related to Windows-side WSL.        |
+|  _setup.ps1_ | Main setup script.                                      |
 
 ## Encrypted secrets
 
