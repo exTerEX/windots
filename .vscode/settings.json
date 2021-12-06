@@ -9,5 +9,8 @@
     "[jsonc]": {
         "files.insertFinalNewline": false,
         "files.trimFinalNewlines": true
+    },
+    "files.associations": {
+        ".bash_*": "shellscript"
     }
 }
