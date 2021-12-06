@@ -25,6 +25,21 @@ The repository follows a straight forward folder structure. For clearification e
 | wsl        | Configuration files related to Windows-side WSL.        |
 | setup.ps1  | Main setup script.                                      |
 
+## Encrypted secrets
+
+All secrets in this repository are encrypted and locked as binaries via [AGWA/git-crypt](https://github.com/AGWA/git-crypt). The [gitattributes](.gitattributes) file controls which which files are encrypted. Use `git-crypt status -e` to see all encrypted files in the repository.
+
+## Authors
+
+- _Andreas Sagen_ - Maintainer
+
+This project does not currently accept commits from non-authors. Feel free to fork and make it your own, or use configuration files and/or ideas from this project, freely.
+
 ## License
 
 This project is licensed under `Unlicense`. For more details see [LICENSE](LICENSE).
+
+## Acknowledgments
+
+- [jimbrig/jimsdots](https://github.com/jimbrig/jimsdots) for the inspiration to this project.
+- [AGWA/git-crypt](https://github.com/AGWA/git-crypt) for allowing me to keep secrets secret.
