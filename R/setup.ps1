@@ -1,24 +1,20 @@
 #!/usr/bin/env pwsh
 
+# Create related directories
+New-Directory -Path "$HOME\.vscode-R" -Hide
+New-Directory -Path "$HOME\.config\R"
+
 # Install R
 winget install RProject.R --architecture x64 --accept-package-agreements --accept-source-agreements
 
-# Create related directories
-New-Directory -Path "$HOME\.vscode-R" -Hide
+# Set R paths
+$RPATH = "$env:programfiles\R\R-*\bin\x64" | Convert-Path
+$REGREXPATH = [regex]::Escape($RPATH)
+$ARRAYPATH = $env:path -split ";" | Where-Object { $_ -notMatch "^$REGREXPATH\\?" }
+$env:path = ($ARRAYPATH + $RPATH) -join ";"
+
+# Create softlink to '.Rprofile'.
+Set-Softlink -Path "$HOME\.Rprofile" -Target "$PSScriptRoot\.Rprofile"
 
 # Install R packages
-# Find folder to Rscript
-$PATH = "$env:programfiles\R"
-$NAME = Get-ChildItem -Path $PATH -Name
-
-# TODO: If more then 1 select largest number
-
-$RPATH = "$PATH\$NAME\bin"
-
-# Set R-path to environment path
-# TODO: Check if RPath already is added?
-Set-Item -Path $env:path -Value ($env:path + ";$RPATH")
-
-Set-Location $RPATH
-Rscript.exe R/packages.R
-Set-Location $PSScriptRoot
+Rscript R/packages.R
