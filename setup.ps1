@@ -88,6 +88,7 @@ Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 New-Directory -Path "$HOME\.aws" -Hide
 New-Directory -Path "$HOME\.azure" -Hide
 New-Directory -Path "$HOME\repo"
+New-Directory -Path "$HOME\.config" -Hide
 
 # Scoop
 Invoke-Expression -Command "$PSScriptRoot\scoop\setup.ps1" | Invoke-Expression
