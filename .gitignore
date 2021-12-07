@@ -1,1 +1,11 @@
 **/*.swp
+
+# PowerToys
+powertoys/PowerToys/**/*.log
+powertoys/PowerToys/**/*.txt
+powertoys/PowerToys/*.json
+powertoys/PowerToys/**/*History.json
+powertoys/PowerToys/**/*Record.json
+powertoys/PowerToys/PowerRename/power-rename-ui-flags
+
+!powertoys/PowerToys/**/settings.json

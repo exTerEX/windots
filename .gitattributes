@@ -12,4 +12,7 @@ ssh/id_* filter=git-crypt diff=git-crypt
 ssh/id_*.pub !filter !diff
 ssh/config filter=git-crypt diff=git-crypt
 
+# PowerToys
+powertoys/**/*.json eol=crlf
+
 .gitattributes !filter !diff
