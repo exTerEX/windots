@@ -6,9 +6,12 @@
     "[shellscript]": {
         "files.eol": "\n"
     },
+    "[json]": {
+        "editor.formatOnSave": false
+    },
     "[jsonc]": {
-        "files.insertFinalNewline": false,
-        "files.trimFinalNewlines": true
+        "files.trimFinalNewlines": false,
+        "editor.formatOnSave": false
     },
     "files.associations": {
         ".bash_*": "shellscript"
