@@ -1,8 +1,8 @@
 #!/usr/bin/env pwsh
 
-# Install Miniconda
+# Install Anaconda
 if (!(where.exe conda)) {
-    winget install Anaconda.Miniconda3 --scope=user --architecture=x64
+    winget install Anaconda.Anaconda3 --scope=user --architecture=x64
 }
 
 # Create softlink to '.condarc' and hide it.
