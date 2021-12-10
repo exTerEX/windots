@@ -6,10 +6,7 @@
     "[shellscript]": {
         "files.eol": "\n"
     },
-    "[json]": {
-        "editor.formatOnSave": false
-    },
-    "[jsonc]": {
+    "[json][jsonc]": {
         "files.insertFinalNewline": false,
         "files.trimFinalNewlines": true,
         "editor.formatOnSave": false
