@@ -8,5 +8,6 @@ powertoys/PowerToys/**/*History.json
 powertoys/PowerToys/**/*Record.json
 powertoys/PowerToys/PowerRename/power-rename-ui-flags
 powertoys/PowerToys/FancyZones/zones-settings.json
+powertoys/PowerToys/FancyZones/editor-parameters.json
 
 !powertoys/PowerToys/**/settings.json
