@@ -16,3 +16,8 @@ Set-Softlink -Path "$BASEPATH\.gitattributes" -Target "$PSScriptRoot\.gitattribu
 
 # Create softlink to '.gitmessage' and hide it.
 Set-Softlink -Path "$BASEPATH\.gitmessage" -Target "$PSScriptRoot\.gitmessage"
+
+# Install git
+if (!(where.exe git)) {
+    winget install Git.Git --scope=machine --architecture=x64
+}
