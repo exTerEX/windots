@@ -10,7 +10,8 @@
         "editor.formatOnSave": false
     },
     "[jsonc]": {
-        "files.trimFinalNewlines": false,
+        "files.insertFinalNewline": false,
+        "files.trimFinalNewlines": true,
         "editor.formatOnSave": false
     },
     "files.associations": {
