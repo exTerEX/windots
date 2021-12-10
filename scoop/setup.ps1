@@ -8,6 +8,11 @@ New-Directory -Path "$HOME\scoop" -Hide
 Set-Softlink -Path "$HOME\.config\scoop\config.json" -Target "$PSScriptRoot\config.json"
 
 # Install scoop
+Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+
+if (!(where.exe scoop)) {
+    Invoke-Expression (New-Object System.Net.WebClient).DownloadString("https://get.scoop.sh")
+}
 
 # Install scoop dependencies
 scoop install git-crypt
