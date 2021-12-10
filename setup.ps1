@@ -96,6 +96,9 @@ Invoke-Expression -Command "$PSScriptRoot\scoop\setup.ps1" | Invoke-Expression
 # Winget
 Invoke-Expression -Command "$PSScriptRoot\winget\setup.ps1" | Invoke-Expression
 
+# Visual Studio Code
+Invoke-Expression -Command "$PSScriptRoot\vscode\setup.ps1" | Invoke-Expression
+
 # Git
 Invoke-Expression -Command "$PSScriptRoot\git\setup.ps1" | Invoke-Expression
 
@@ -122,9 +125,6 @@ Invoke-Expression -Command "$PSScriptRoot\terminal\setup.ps1" | Invoke-Expressio
 
 # GPG
 Invoke-Expression -Command "$PSScriptRoot\gpg\setup.ps1" | Invoke-Expression
-
-# Visual Studio Code
-Invoke-Expression -Command "$PSScriptRoot\vscode\setup.ps1" | Invoke-Expression
 
 # R
 Invoke-Expression -Command "$PSScriptRoot\R\setup.ps1" | Invoke-Expression
