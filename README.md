@@ -12,12 +12,16 @@ The repository follows a straight forward folder structure. For clearification e
 
 |       Folder | Description                                             |
 | -----------: | :------------------------------------------------------ |
+| _.git-crypt_ | Configuration of git-crypt with referance to GPG key.   |
+|    _.vscode_ | Project configuration for Visual Studio Code.           |
 |       _bash_ | Configuration files related to git-for-windows bash.    |
 |      _conda_ | Configuration files related to ana- and miniconda.      |
 |        _git_ | Configuration files related to git.                     |
-|        _gpg_ | Key and configuration files for gpg.                    |
-| _powershell_ | Configuration files related to powershell.              |
+|        _gpg_ | Key, configuration and setup files for gpg.             |
+| _powershell_ | Configuration and setup files related to powershell.    |
+|  _powertoys_ | Configuration and setup files related to powertoys.     |
 |      _pymol_ | Configuration and certification files related to pymol. |
+|          _R_ | Configuration and setup files for R.                    |
 |      _scoop_ | Configuration files related to scoop package manager.   |
 |        _ssh_ | Key and configuration files related to ssh.             |
 |   _terminal_ | Configuration files related to Windows terminal.        |
