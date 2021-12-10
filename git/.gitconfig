@@ -6,12 +6,12 @@
 	defaultBranch = main
 [commit]
 	gpgsign = true
-	template = ~/.git/.gitmessage
+	template = ~/.config/git/.gitmessage
 [core]
-	excludesfile = ~/.git/.gitignore
-	attributesfile = ~/.git/.gitattributes
+	excludesfile = ~/.config/git/.gitignore
+	attributesfile = ~/.config/git/.gitattributes
 	autocrlf = input
-	editor = code
+	editor = code --wait
 	fileMode = true
 	hidedotfiles = false
 	protectntfs = true

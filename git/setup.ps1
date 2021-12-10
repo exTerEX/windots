@@ -1,16 +1,23 @@
 #!/usr/bin/env pwsh
 
 # Create related directories
-New-Directory -Path "$HOME\.git" -Hide
+New-Directory -Path "$HOME\.config\git"
+
+$BASEPATH = "$HOME\.config\git"
 
 # Create softlink to '.gitconfig' and hide it.
 Set-Softlink -Path "$HOME\.gitconfig" -Target "$PSScriptRoot\.gitconfig" -Hide
 
 # Create softlink to '.gitignore' and hide it.
-Set-Softlink -Path "$HOME\.git\.gitignore" -Target "$PSScriptRoot\.gitignore"
+Set-Softlink -Path "$BASEPATH\.gitignore" -Target "$PSScriptRoot\.gitignore"
 
 # Create softlink to '.gitattributes' and hide it.
-Set-Softlink -Path "$HOME\.git\.gitattributes" -Target "$PSScriptRoot\.gitattributes"
+Set-Softlink -Path "$BASEPATH\.gitattributes" -Target "$PSScriptRoot\.gitattributes"
 
 # Create softlink to '.gitmessage' and hide it.
-Set-Softlink -Path "$HOME\.git\.gitmessage" -Target "$PSScriptRoot\.gitmessage"
+Set-Softlink -Path "$BASEPATH\.gitmessage" -Target "$PSScriptRoot\.gitmessage"
+
+# Install git
+if (!(where.exe git)) {
+    winget install Git.Git --scope=machine --architecture=x64
+}
