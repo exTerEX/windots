@@ -1,23 +1,26 @@
 #!/usr/bin/env pwsh
 
-# Create related directories
-New-Directory -Path "$HOME\.config" -Hide
+# Create directory 'scoop' in users home directory and hide it. This is
+# the directory where Scoop install itself, and other programs for the user.
 New-Directory -Path "$HOME\scoop" -Hide
 
-# Create softlink to 'config.json' and hide it.
-Set-Softlink -Path "$HOME\.config\scoop\config.json" -Target "$PSScriptRoot\config.json"
+# Create softlink to the Scoop configuration file to keep specific settings,
+# and Scoop version settings.
+$Path = "$HOME\.config\scoop\config.json"
+$Target = "$PSScriptRoot\config.json"
+Set-Softlink -Path $Path -Target $Target
 
 # Install scoop
-Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-
+$Uri = "https://get.scoop.sh"
 if (!(where.exe scoop)) {
-    Invoke-Expression (New-Object System.Net.WebClient).DownloadString("https://get.scoop.sh")
+    Invoke-Expression (New-Object System.Net.WebClient).DownloadString($Uri)
 }
 
-# Install scoop dependencies
-scoop install git-crypt
-scoop install 7zip
-scoop install curl
+# Install programs regularily used are installed if not already installed.
+if (!(where.exe scoop)) { scoop install git-crypt }
+if (!(where.exe 7zip)) { scoop install 7zip }
+if (!(where.exe curl)) { scoop install curl }
 
-# Hide related files
+# Some files are generated when installing Scoop. These are hidden, if in
+# the users home directory.
 Hide-File "$HOME\.lesshst"
