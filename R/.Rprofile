@@ -2,25 +2,16 @@
 .libPaths("~/.config/R/lib/4")
 
 # Default options
-options(
-    repos = c(CRAN = "https://cloud.r-project.org/"),
-    editor = "code",
-    pager = "internal",
-    useFancyQuotes = FALSE,
-    tab.width = 2,
-    browserNLdisabled = TRUE,
-    max.print = 200,
-    shiny.launch.browser = TRUE,
-    Ncpus = parallel::detectCores(),
-    scipen = 999,
-    languageserver.snippet_support = TRUE,
-    vsc.use_httpgd = TRUE,
-    languageserver.server_capabilities = list(
-        documentHighlightProvider = FALSE
-    ),
-    remotes.install.args = "--no-multiarch",
-    devtools.install.args = "--no-multiarch",
+local(
+    {
+        r <- getOption("repos")
+        r["CRAN"] <- "https://cloud.r-project.org"
+        options(repos = r)
+    }
 )
+
+options(editor = "code")
+options(pager = "internal")
 
 # Completion of package names
 utils::rc.settings(ipck = TRUE)
