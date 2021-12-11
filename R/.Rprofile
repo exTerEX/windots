@@ -7,6 +7,7 @@ options(
     editor = "code",
     pager = "internal",
     useFancyQuotes = FALSE,
+    tab.width = 2,
     browserNLdisabled = TRUE,
     max.print = 200,
     shiny.launch.browser = TRUE,
