@@ -17,9 +17,6 @@
 [pull]
 	rebase = false
 [credential]
-	helper = manager-core
-	helper =
-	helper = C:/Program Files (x86)/Git Credential Manager Core/git-credential-manager-core.exe
 	helper = cache
 [credential "https://dev.azure.com"]
 	useHttpPath = true
