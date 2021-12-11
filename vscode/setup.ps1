@@ -1,7 +1,9 @@
 #!/usr/bin/env pwsh
 
 # Install VSCode
-winget install Microsoft.VisualStudioCode --scope "machine" --architecture x64
+if (!(where.exe code)) {
+    winget install Microsoft.VisualStudioCode --scope "machine" --architecture x64
+}
 
 # Create softlink to 'settings.json'.
 Set-Softlink -Path "$env:appdata\Code\User\settings.json" -Target "$PSScriptRoot\settings.json"
