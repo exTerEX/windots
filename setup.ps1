@@ -1,6 +1,6 @@
 #Requires -Version 5
 
-$erroractionpreference = "stop" # quit if anything goes wrong
+#$erroractionpreference = "stop" # quit if anything goes wrong
 
 if (($PSVersionTable.PSVersion.Major) -lt 5) {
     Write-Output "PowerShell 5 or later is required to run."
@@ -91,42 +91,42 @@ New-Directory -Path "$HOME\repo"
 New-Directory -Path "$HOME\.config" -Hide
 
 # Scoop
-Invoke-Expression -Command "$PSScriptRoot\scoop\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\scoop\setup.ps1"
 
 # Winget
-Invoke-Expression -Command "$PSScriptRoot\winget\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\winget\setup.ps1"
 
 # Visual Studio Code
-Invoke-Expression -Command "$PSScriptRoot\vscode\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\vscode\setup.ps1"
 
 # Git
-Invoke-Expression -Command "$PSScriptRoot\git\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\git\setup.ps1"
 
 # SSH
-Invoke-Expression -Command "$PSScriptRoot\ssh\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\ssh\setup.ps1"
 
 # Powershell
-Invoke-Expression -Command "$PSScriptRoot\powershell\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\powershell\setup.ps1"
 
 # Anaconda / Miniconda
-Invoke-Expression -Command "$PSScriptRoot\conda\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\conda\setup.ps1"
 
 # pymol
-Invoke-Expression -Command "$PSScriptRoot\pymol\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\pymol\setup.ps1"
 
 # Bash
-Invoke-Expression -Command "$PSScriptRoot\bash\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\bash\setup.ps1"
 
 # WSL
-Invoke-Expression -Command "$PSScriptRoot\wsl\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\wsl\setup.ps1"
 
 # Windows terminal
-Invoke-Expression -Command "$PSScriptRoot\terminal\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\terminal\setup.ps1"
 
 # GPG
-Invoke-Expression -Command "$PSScriptRoot\gpg\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\gpg\setup.ps1"
 
 # R
-Invoke-Expression -Command "$PSScriptRoot\R\setup.ps1" | Invoke-Expression
+Invoke-Expression -Command "$PSScriptRoot\R\setup.ps1"
 
 Write-Host "Setup finished." -ForegroundColor Green
