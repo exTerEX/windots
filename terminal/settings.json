@@ -84,6 +84,14 @@
                 "hidden": false,
                 "name": "kali-linux",
                 "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "colorScheme": "Campbell Powershell",
+                "commandline": "powershell.exe -ExecutionPolicy ByPass -NoExit -Command \"& '~\\miniconda3\\shell\\condabin\\conda-hook.ps1' ; conda activate '~\\miniconda3'\"",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6105}",
+                "hidden": false,
+                "name": "Anaconda",
+                "startingDirectory": "%HOMEPATH%"
             }
         ]
     },
