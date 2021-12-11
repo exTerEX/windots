@@ -7,9 +7,6 @@ if (!(((Get-ChildItem $REGPATH) | Where-Object { $_."Name" -like "*$KEY*" } ).Le
     winget install XP89DCGQ3K6VLD --architecture x64 --accept-package-agreements
 }
 
-# Install
-winget install XP89DCGQ3K6VLD --accept-package-agreements --accept-source-agreements
-
 # Remove previous settings file
 Remove-Item -Path "$ENV:LOCALAPPDATA\Microsoft\PowerToys" -Force
 
