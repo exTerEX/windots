@@ -12,7 +12,7 @@ New-Directory -Path "$HOME\.config\git"
 Set-Softlink -Path "$HOME\.config\git\config" -Target "$PSScriptRoot\config"
 
 # Create softlink to 'gitconfig' and hide it.
-Set-Softlink -Path "$env:programfiles\etc\gitconfig" -Target "$PSScriptRoot\gitconfig"
+Set-Softlink -Path "$env:programfiles\git\etc\gitconfig" -Target "$PSScriptRoot\gitconfig"
 
 # Create softlink to '.gitignore' and hide it.
 Set-Softlink -Path "$HOME\.config\git\.gitignore" -Target "$PSScriptRoot\.gitignore"
