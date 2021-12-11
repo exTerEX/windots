@@ -12,7 +12,9 @@
         "editor.formatOnSave": false
     },
     "files.associations": {
-        ".bash_*": "shellscript"
+        ".bash_*": "shellscript",
+        "config": "properties",
+        ".gitmessage": "git-commit"
     },
     "files.exclude": {
         "**/.git": true,

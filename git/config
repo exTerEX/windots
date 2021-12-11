@@ -2,21 +2,16 @@
 	name = exTerEX
 	email = 30706568+exTerEX@users.noreply.github.com
 	singingkey = B0C04CF48CEB0CAB
-[init]
-	defaultBranch = main
 [commit]
 	gpgsign = true
 	template = ~/.config/git/.gitmessage
 [core]
 	excludesfile = ~/.config/git/.gitignore
 	attributesfile = ~/.config/git/.gitattributes
-	autocrlf = input
-	editor = code --wait
 	fileMode = true
 	hidedotfiles = false
 	protectntfs = true
 	safecrlf = warn
-	symlinks = true
 [github]
 	user = exterex
 [color]
@@ -45,14 +40,5 @@
 	program = C:/Program Files (x86)/gnupg/bin/gpg
 [tag]
 	forcesignannotated = true
-[help]
-	autocorrect = 1
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [submodule]
 	recurse = true
-[credential]
-	helper = cache
