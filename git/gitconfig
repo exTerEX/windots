@@ -15,10 +15,6 @@
 	useBuiltinFSMonitor = true
 [pull]
 	rebase = false
-[credential]
-	helper = cache
-[credential "https://dev.azure.com"]
-	useHttpPath = true
 [init]
 	defaultBranch = main
 [help]
