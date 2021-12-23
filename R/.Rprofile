@@ -16,9 +16,6 @@ options(pager = "internal")
 # Completion of package names
 utils::rc.settings(ipck = TRUE)
 
-# History
-Sys.setenv("R_HISTFILE" = path.expand("~/.config/R/.Rhistory"))
-
 # Error tracing
 if ("rlang" %in% loadedNamespaces()) options(error = rlang::entrace)
 
