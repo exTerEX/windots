@@ -11,9 +11,11 @@ channels:
   - intel
   - bioconda
   - r
+  - bioconda
   - conda-forge
   - anaconda
   - defaults
+channel_priority: strict
 repodata_threads: 2
 show_channel_urls: true
 ssl_verify: true
