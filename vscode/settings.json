@@ -41,12 +41,13 @@
     ],
     "jupyter.askForKernelRestart": false,
     "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "terminal.integrated.defaultProfile.linux": "zsh",
     "files.associations": {
         "LICENSE": "plaintext"
     },
-    "powershell.promptToUpdatePackageManagement": false
+    "powershell.promptToUpdatePackageManagement": false,
+    "terminal.integrated.inheritEnv": false
 }
