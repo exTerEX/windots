@@ -24,3 +24,5 @@ code --install-extension ms-python.python
 code --install-extension ms-python.vscode-pylance
 code --install-extension ikuyadeu.r
 code --install-extension mechatroner.rainbow-csv
+code --install-extension gruntfuggly.todo-tree
+code --install-extension editorconfig.editorconfig
