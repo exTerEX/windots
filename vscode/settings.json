@@ -49,5 +49,6 @@
         "LICENSE": "plaintext"
     },
     "powershell.promptToUpdatePackageManagement": false,
-    "terminal.integrated.inheritEnv": false
+    "terminal.integrated.inheritEnv": false,
+    "notebook.lineNumbers": "on"
 }
