@@ -4,6 +4,9 @@
 New-Directory -Path "$HOME\.vscode-R" -Hide
 New-Directory -Path "$HOME\.config\R"
 
+# Create files
+New-Item -Path "$HOME\.config\R\" -Name ".Rhistory" -ItemType File | Out-Null
+
 # Install R
 $REGPATH = "HKLM:Software\Microsoft\Windows\CurrentVersion\Uninstall"
 if (!(((Get-ChildItem $REGPATH) | Where-Object { $_."Name" -like "*R*" } ).Length -gt 0)) {
@@ -14,7 +17,7 @@ if (!(((Get-ChildItem $REGPATH) | Where-Object { $_."Name" -like "*R*" } ).Lengt
 $RPATH = "$env:programfiles\R\R-*\bin\x64" | Convert-Path
 $REGREXPATH = [regex]::Escape($RPATH)
 $ARRAYPATH = [Environment]::GetEnvironmentVariable("Path", "Machine") -split ";" |
-  Where-Object { $_ -notMatch "^$REGREXPATH\\?" }
+Where-Object { $_ -notMatch "^$REGREXPATH\\?" }
 [Environment]::SetEnvironmentVariable("Path", ($ARRAYPATH + $RPATH) -join ";", "Machine")
 
 # Create softlink to '.Rprofile'.
