@@ -9,4 +9,6 @@ New-Directory -Path "$HOME\.pymol\scripts"
 Set-Softlink -Path "$HOME\pymolrc.pml" -Target "$PSScriptRoot\pymolrc.pml" -Hide
 
 # Download scripts
-git clone -- "https://github.com/exTerEX/pymol-ramachandran.git" "$HOME\.pymol\scripts"
+If (!(test-path "$HOME\.pymol\scripts\pymol-ramachandran")) {
+    git clone -- "https://github.com/exTerEX/pymol-ramachandran.git" "$HOME\.pymol\scripts"
+}
