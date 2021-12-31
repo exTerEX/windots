@@ -33,7 +33,7 @@ function New-Directory {
     param ([Parameter(Mandatory)][string]$Path, [switch]$Hide)
 
     PROCESS {
-        If (-not (test-path $Path)) { mkdir $Path }
+        If (!(test-path $Path)) { mkdir $Path }
 
         if ($Hide) { Hide-File($Path) }
     }
@@ -69,7 +69,12 @@ function Get-Zip {
 
         $FileNameWithoutExtension = [System.IO.Path]::GetFileNameWithoutExtension($ZippedFilePath)
 
-        Invoke-WebRequest -Uri $Uri -OutFile $ZippedFilePath
+        # TODO: Switch statement to control local cache behaviour
+        # Use local copy if available
+        if (!(Test-Path -Path $ZippedFilePath)) {
+            Write-Host "Using local available cache for package: $FileNameWithoutExtension..." -ForegroundColor Blue
+            Invoke-WebRequest -Uri $Uri -OutFile $ZippedFilePath
+        }
 
         if ($Extract) {
             $ExtractPath = "$DestinationPath\$FileNameWithoutExtension"
