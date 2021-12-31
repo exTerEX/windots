@@ -18,7 +18,7 @@ if (!(where.exe scoop)) {
 
 # Install programs regularily used are installed if not already installed.
 if (!(where.exe scoop)) { scoop install git-crypt }
-if (!(where.exe 7zip)) { scoop install 7zip }
+scoop install 7zip # FIXME: Doesn't work as expected, pattern not found.
 if (!(where.exe curl)) { scoop install curl }
 
 # Some files are generated when installing Scoop. These are hidden, if in
