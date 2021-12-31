@@ -5,7 +5,9 @@ New-Directory -Path "$HOME\.vscode-R" -Hide
 New-Directory -Path "$HOME\.config\R"
 
 # Create files
-New-Item -Path "$HOME\.config\R\" -Name ".Rhistory" -ItemType File | Out-Null
+If (!(test-path "$HOME\.config\R\.Rhistory")) {
+  New-Item -Path "$HOME\.config\R\" -Name ".Rhistory" -ItemType File | Out-Null
+}
 
 # Install R
 $REGPATH = "HKLM:Software\Microsoft\Windows\CurrentVersion\Uninstall"
