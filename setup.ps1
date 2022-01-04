@@ -128,6 +128,9 @@ Invoke-Expression -Command "$PSScriptRoot\wsl\setup.ps1"
 # Windows terminal
 Invoke-Expression -Command "$PSScriptRoot\terminal\setup.ps1"
 
+# GnuPG
+Invoke-Expression -Command "$PSScriptRoot\gnupg\setup.ps1"
+
 # GPG
 Invoke-Expression -Command "$PSScriptRoot\gpg\setup.ps1"
 
