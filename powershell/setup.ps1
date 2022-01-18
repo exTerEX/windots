@@ -21,13 +21,14 @@ if (!(Get-Module -ListAvailable -Name oh-my-posh)) {
 
 # Install fonts
 $Uri = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip"
-New-Directory -Path "$env:programfiles (x86)\WindowsPowerShell\Cache"
+New-Directory -Path "$env:programfiles (x86)\WindowsPowerShell\Cache" | Out-Null
 $FilePath = Get-Zip -Uri $Uri -DestinationPath "$env:programfiles (x86)\WindowsPowerShell\Cache" -Extract
 
 # TODO: Modify so the object is not installed if already installed
 # FIXME: Allow for non-interactive installation that works
+# FIXME: New error?!
 $fonts = (New-Object -ComObject Shell.Application).Namespace(0x14)
-Get-ChildItem -Path $FilePath -Recurse -include *.ttf | ForEach-Object -Confirm { $fonts.CopyHere($_.fullname) }
+Get-ChildItem -Path $FilePath -Recurse -include *.ttf | ForEach-Object { $fonts.CopyHere($_.fullname) }
 
 # Remove extracted fonts folder
 Remove-Item -Path $FilePath -Recurse -Force | Out-Null

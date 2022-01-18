@@ -10,7 +10,7 @@ if (($PSVersionTable.PSVersion.Major) -lt 5) {
 $isadmin = (new-object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole("Administrators")
 if (-not ($isadmin)) { throw "Must have Admininstrative Priveledges..." }
 
-Write-Host "Setting up System..." -ForegroundColor Blue
+Write-Host "Configuring System..." -ForegroundColor "Yellow"
 
 # Set execution policy
 $exepolicy = Get-ExecutionPolicy
@@ -94,6 +94,12 @@ New-Directory -Path "$HOME\.aws" -Hide
 New-Directory -Path "$HOME\.azure" -Hide
 New-Directory -Path "$HOME\repo"
 New-Directory -Path "$HOME\.config" -Hide
+
+# Windows
+Invoke-Expression -Command "$PSScriptRoot\windows\setup.ps1"
+
+# Schedule
+#Invoke-Expression -Command "$PSScriptRoot\schedule\setup.ps1"
 
 # Scoop
 Invoke-Expression -Command "$PSScriptRoot\scoop\setup.ps1"
