@@ -25,6 +25,7 @@ The repository follows a straight forward folder structure. For clearification e
 |      _scoop_ | Configuration files related to scoop package manager.   |
 |        _ssh_ | Key and configuration files related to ssh.             |
 |   _terminal_ | Configuration files related to Windows terminal.        |
+|    _windows_ | Configuration related to Windows.                       |
 |     _winget_ | Configuration files related to WinGet.                  |
 |        _wsl_ | Configuration files related to Windows-side WSL.        |
 |  _setup.ps1_ | Main setup script.                                      |
@@ -46,4 +47,5 @@ This project is licensed under `Unlicense`. For more details see [LICENSE](LICEN
 ## Acknowledgments
 
 - [jimbrig/jimsdots](https://github.com/jimbrig/jimsdots) for the inspiration to this project.
+- [ayharris/dotfiles-windows](https://github.com/jayharris/dotfiles-windows) for specific implementation and settings.
 - [AGWA/git-crypt](https://github.com/AGWA/git-crypt) for allowing me to keep secrets secret.
