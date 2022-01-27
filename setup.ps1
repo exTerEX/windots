@@ -33,7 +33,9 @@ function New-Directory {
     param ([Parameter(Mandatory)][string]$Path, [switch]$Hide)
 
     PROCESS {
-        If (!(test-path $Path)) { mkdir $Path }
+        If (!(test-path $Path)) {
+            New-Item -Path $Path -ItemType "directory" | Out-Null
+        }
 
         if ($Hide) { Hide-File($Path) }
     }
