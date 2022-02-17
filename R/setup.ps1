@@ -3,6 +3,7 @@
 # Create related directories
 New-Directory -Path "$HOME\.vscode-R" -Hide
 New-Directory -Path "$HOME\.config\R"
+New-Directory -Path "$HOME\.config\R\lib"
 
 # Create files
 If (!(test-path "$HOME\.config\R\.Rhistory")) {
@@ -27,7 +28,7 @@ $RPROFILEPATH = "$HOME\.config\R\.Rprofile"
 Set-Softlink -Path $RPROFILEPATH -Target "$PSScriptRoot\.Rprofile"
 
 # Set library path
-$RLIBSPATH = "$HOME\.config\R\lib\4"
+$RLIBSPATH = "$HOME\.config\R\lib"
 
 # Set environment variables
 [System.Environment]::SetEnvironmentVariable("R_PROFILE_USER", $RPROFILEPATH, "User")
