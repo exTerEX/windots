@@ -1,8 +1,10 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": [
+    "actions":
+    [
         {
-            "command": {
+            "command":
+            {
                 "action": "copy",
                 "singleLine": false
             },
@@ -17,13 +19,15 @@
             "keys": "ctrl+v"
         },
         {
-            "command": {
+            "command":
+            {
                 "action": "nextTab"
             },
             "keys": "ctrl+right"
         },
         {
-            "command": {
+            "command":
+            {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
@@ -31,7 +35,8 @@
             "keys": "alt+shift+d"
         },
         {
-            "command": {
+            "command":
+            {
                 "action": "prevTab"
             },
             "keys": "ctrl+left"
@@ -41,13 +46,19 @@
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     "focusFollowMouse": true,
-    "profiles": {
-        "defaults": {
+    "profiles":
+    {
+        "defaults":
+        {
             "acrylicOpacity": 0.29999999999999999,
-            "useAcrylic": true,
-            "fontFace": "MesloLGM NF"
+            "font":
+            {
+                "face": "MesloLGM NF"
+            },
+            "useAcrylic": true
         },
-        "list": [
+        "list":
+        [
             {
                 "colorScheme": "Campbell Powershell",
                 "commandline": "powershell.exe",
@@ -62,12 +73,6 @@
                 "name": "Command Prompt"
             },
             {
-                "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
-                "hidden": false,
-                "name": "Git Bash",
-                "source": "Git"
-            },
-            {
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
                 "name": "Ubuntu",
@@ -80,12 +85,6 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
-                "guid": "{46ca431a-3a87-5fb3-83cd-11ececc031d2}",
-                "hidden": false,
-                "name": "kali-linux",
-                "source": "Windows.Terminal.Wsl"
-            },
-            {
                 "colorScheme": "Campbell Powershell",
                 "commandline": "powershell.exe -ExecutionPolicy ByPass -NoExit -Command \"& '~\\miniconda3\\shell\\condabin\\conda-hook.ps1' ; conda activate '~\\miniconda3'\"",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6105}",
@@ -95,7 +94,8 @@
             }
         ]
     },
-    "schemes": [
+    "schemes":
+    [
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
