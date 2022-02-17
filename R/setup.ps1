@@ -11,16 +11,15 @@ If (!(test-path "$HOME\.config\R\.Rhistory")) {
 }
 
 # Install R
+$RPATH = "$env:programfiles\R\"
 $REGPATH = "HKLM:Software\Microsoft\Windows\CurrentVersion\Uninstall"
 if (!(((Get-ChildItem $REGPATH) | Where-Object { $_."Name" -like "*R*" } ).Length -gt 0)) {
-  winget install RProject.R --architecture x64
+  winget install RProject.R --architecture x64 --location $RPATH
 }
 
 # Set R paths
-$RPATH = "$env:programfiles\R\R-*\bin\x64" | Convert-Path
-$REGREXPATH = [regex]::Escape($RPATH)
-$ARRAYPATH = [Environment]::GetEnvironmentVariable("Path", "Machine") -split ";" |
-Where-Object { $_ -notMatch "^$REGREXPATH\\?" }
+$RPATH = ($RPATH + "bin\x64")
+$ARRAYPATH = [Environment]::GetEnvironmentVariable("Path", "Machine") -split ";"
 [Environment]::SetEnvironmentVariable("Path", ($ARRAYPATH + $RPATH) -join ";", "Machine")
 
 # Create softlink to '.Rprofile'.
