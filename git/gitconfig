@@ -19,3 +19,7 @@
 	defaultBranch = main
 [help]
 	autocorrect = 1
+[credential]
+	helper = manager-core
+[credential "https://dev.azure.com"]
+	useHttpPath = true
