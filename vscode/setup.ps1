@@ -1,8 +1,10 @@
 #!/usr/bin/env pwsh
 
 # Install VSCode
+$PATH = "$env:programfiles\Microsoft Visual Studio\Code"
+New-Directory -Path $PATH
 if (!(where.exe code)) {
-    winget install Microsoft.VisualStudioCode --scope "machine" --architecture x64
+    winget install Microsoft.VisualStudioCode -a x64 -s machine -l $PATH
 }
 
 # Create softlink to 'settings.json'.
