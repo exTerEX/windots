@@ -12,14 +12,6 @@ if (-not ($isadmin)) { throw "Must have Admininstrative Priveledges..." }
 
 Write-Host "Configuring System..." -ForegroundColor "Yellow"
 
-# Set execution policy
-$exepolicy = Get-ExecutionPolicy
-if ($exepolicy -ne "Unrestricted") {
-    Write-Host "Setting Execution Policy to Unrestricted" -ForegroundColor Blue
-    Set-ExecutionPolicy Unrestricted -scope CurrentUser
-    Set-ExecutionPolicy Unrestricted
-}
-
 # Custom functions
 function Hide-File {
     param([Parameter(Mandatory)][string]$Path)
