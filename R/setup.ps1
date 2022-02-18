@@ -10,13 +10,6 @@ If (!(test-path "$HOME\.config\R\.Rhistory")) {
   New-Item -Path "$HOME\.config\R\" -Name ".Rhistory" -ItemType File | Out-Null
 }
 
-# Install R
-$RPATH = "$env:programfiles\R\"
-$REGPATH = "HKLM:Software\Microsoft\Windows\CurrentVersion\Uninstall"
-if (!(((Get-ChildItem $REGPATH) | Where-Object { $_."Name" -like "*R*" } ).Length -gt 0)) {
-  winget install RProject.R --architecture x64 --location $RPATH
-}
-
 # Set R paths
 $RPATH = ($RPATH + "bin\x64")
 $ARRAYPATH = [Environment]::GetEnvironmentVariable("Path", "Machine") -split ";"

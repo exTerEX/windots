@@ -25,8 +25,6 @@ New-Directory -Path "$env:programfiles (x86)\WindowsPowerShell\Cache" | Out-Null
 $FilePath = Get-Zip -Uri $Uri -DestinationPath "$env:programfiles (x86)\WindowsPowerShell\Cache" -Extract
 
 # TODO: Modify so the object is not installed if already installed
-# FIXME: Allow for non-interactive installation that works
-# FIXME: New error?!
 $fonts = (New-Object -ComObject Shell.Application).Namespace(0x14)
 Get-ChildItem -Path $FilePath -Recurse -include *.ttf | ForEach-Object { $fonts.CopyHere($_.fullname) }
 

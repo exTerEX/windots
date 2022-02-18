@@ -100,9 +100,6 @@ New-Directory -Path "$HOME\.config" -Hide
 # Windows
 Invoke-Expression -Command "$PSScriptRoot\windows\setup.ps1"
 
-# Schedule
-#Invoke-Expression -Command "$PSScriptRoot\schedule\setup.ps1"
-
 # Winget
 Invoke-Expression -Command "$PSScriptRoot\winget\setup.ps1"
 
