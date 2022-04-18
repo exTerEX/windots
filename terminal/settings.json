@@ -1,4 +1,5 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "actions":
     [
@@ -50,24 +51,22 @@
     {
         "defaults":
         {
-            "acrylicOpacity": 0.29999999999999999,
             "font":
             {
                 "face": "MesloLGM NF"
             },
+            "opacity": 30,
             "useAcrylic": true
         },
         "list":
         [
             {
                 "colorScheme": "Campbell Powershell",
-                "commandline": "powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
-                "commandline": "cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": true,
                 "name": "Command Prompt"
@@ -91,6 +90,18 @@
                 "hidden": false,
                 "name": "Anaconda",
                 "startingDirectory": "%HOMEPATH%"
+            },
+            {
+                "guid": "{f3f51557-1ddc-5a61-8477-ee67b7d315f6}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{1678bdec-52b5-511e-b0cd-e2c8e1400686}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
