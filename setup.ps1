@@ -1,7 +1,5 @@
 #Requires -Version 5
 
-#$erroractionpreference = "stop" # quit if anything goes wrong
-
 if (($PSVersionTable.PSVersion.Major) -lt 5) {
     Write-Output "PowerShell 5 or later is required to run."
     break
