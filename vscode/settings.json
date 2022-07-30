@@ -49,5 +49,6 @@
         "LICENSE": "plaintext"
     },
     "terminal.integrated.inheritEnv": false,
-    "notebook.lineNumbers": "on"
+    "notebook.lineNumbers": "on",
+    "cmake.configureOnEdit": false
 }
