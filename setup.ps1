@@ -98,9 +98,6 @@ New-Directory -Path "$HOME\.config" -Hide
 # Windows
 Invoke-Expression -Command "$PSScriptRoot\windows\setup.ps1"
 
-# Schedule
-#Invoke-Expression -Command "$PSScriptRoot\schedule\setup.ps1"
-
 # Scoop
 Invoke-Expression -Command "$PSScriptRoot\scoop\setup.ps1"
 
