@@ -29,9 +29,9 @@
     },
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.colorTheme": "Monokai Dimmed",
-    "workbench.productIconTheme": "fluent-icons",
     "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+        "*.ipynb": "jupyter-notebook",
+        "*.pdf": "latex-workshop-pdf-hook"
     },
     "git.autofetchPeriod": 60,
     "git.autoRepositoryDetection": true,
@@ -49,7 +49,7 @@
     "files.associations": {
         "LICENSE": "plaintext"
     },
-    "powershell.promptToUpdatePackageManagement": false,
     "terminal.integrated.inheritEnv": false,
-    "notebook.lineNumbers": "on"
+    "notebook.lineNumbers": "on",
+    "cmake.configureOnEdit": false
 }

@@ -22,7 +22,6 @@ The repository follows a straight forward folder structure. For clearification e
 |  _powertoys_ | Configuration and setup files related to powertoys.     |
 |      _pymol_ | Configuration and certification files related to pymol. |
 |          _R_ | Configuration and setup files for R.                    |
-|      _scoop_ | Configuration files related to scoop package manager.   |
 |        _ssh_ | Key and configuration files related to ssh.             |
 |   _terminal_ | Configuration files related to Windows terminal.        |
 |    _windows_ | Configuration related to Windows.                       |

@@ -1,7 +1,5 @@
 #Requires -Version 5
 
-#$erroractionpreference = "stop" # quit if anything goes wrong
-
 if (($PSVersionTable.PSVersion.Major) -lt 5) {
     Write-Output "PowerShell 5 or later is required to run."
     break
@@ -11,14 +9,6 @@ $isadmin = (new-object System.Security.Principal.WindowsPrincipal([System.Securi
 if (-not ($isadmin)) { throw "Must have Admininstrative Priveledges..." }
 
 Write-Host "Configuring System..." -ForegroundColor "Yellow"
-
-# Set execution policy
-$exepolicy = Get-ExecutionPolicy
-if ($exepolicy -ne "Unrestricted") {
-    Write-Host "Setting Execution Policy to Unrestricted" -ForegroundColor Blue
-    Set-ExecutionPolicy Unrestricted -scope CurrentUser
-    Set-ExecutionPolicy Unrestricted
-}
 
 # Custom functions
 function Hide-File {
@@ -33,7 +23,9 @@ function New-Directory {
     param ([Parameter(Mandatory)][string]$Path, [switch]$Hide)
 
     PROCESS {
-        If (!(test-path $Path)) { mkdir $Path }
+        If (!(test-path $Path)) {
+            New-Item -Path $Path -ItemType "directory" | Out-Null
+        }
 
         if ($Hide) { Hide-File($Path) }
     }
@@ -84,6 +76,17 @@ function Get-Zip {
             return $ExtractPath
         }
     }
+}
+
+function Find-Installed( $programName ) {
+    $x86_check = ((Get-ChildItem "HKLM:Software\Microsoft\Windows\CurrentVersion\Uninstall") |
+        Where-Object { $_."Name" -like "*$programName*" } ).Length -gt 0;
+
+    if (Test-Path 'HKLM:Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall') {
+        $x64_check = ((Get-ChildItem "HKLM:Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall") |
+            Where-Object { $_."Name" -like "*$programName*" } ).Length -gt 0;
+    }
+    return $x86_check -or $x64_check;
 }
 
 # Trust PSrepository
