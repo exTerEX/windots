@@ -12,6 +12,7 @@
 	hidedotfiles = false
 	protectntfs = true
 	safecrlf = warn
+	fsmonitor = true
 [github]
 	user = exterex
 [color]
