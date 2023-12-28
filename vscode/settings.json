@@ -11,7 +11,8 @@
     "[python]": {
         "editor.wordWrap": "off",
         "editor.wrappingStrategy": "advanced",
-        "editor.defaultFormatter": "ms-python.python"
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.wordBasedSuggestions": "off"
     },
     "explorer.sortOrder": "type",
     "editor.formatOnType": true,
