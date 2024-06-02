@@ -24,8 +24,6 @@
 	defaultBranch = main
 [help]
 	autocorrect = 1
-[alias]
-	credential-manager = "credential-manager-core"
 [credential]
 	helper = manager-core
 [credential "https://dev.azure.com"]

@@ -1,14 +1,17 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions":
-    [
+    "actions": [
         {
-            "command":
-            {
-                "action": "prevTab"
+            "command": {
+                "action": "copy",
+                "singleLine": false
             },
             "keys": "ctrl+c"
+        },
+        {
+            "command": "paste",
+            "keys": "ctrl+v"
         },
         {
             "command": {
@@ -20,38 +23,12 @@
         },
         {
             "command": "find",
-            "keys": "ctrl+f"
-        },
-        {
-            "command": "paste",
-            "keys": "ctrl+v"
-        },
-        {
-            "command":
-            {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "ctrl+c"
-        },
-        {
-            "command":
-            {
-                "action": "nextTab"
-            },
-            "keys": "ctrl+right"
-        },
-        {
-            "command": {
-                "action": "prevTab"
-            },
-            "keys": "ctrl+left"
+            "keys": "ctrl+shift+f"
         }
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "focusFollowMouse": true,
     "newTabMenu": [
         {
             "type": "remainingProfiles"
@@ -60,20 +37,21 @@
     "profiles": {
         "defaults": {
             "font": {
-                "face": "MesloLGM NF"
+                "face": "CaskaydiaCove Nerd Font"
             },
-            "opacity": 30,
+            "opacity": 90,
             "useAcrylic": true
         },
-        "list":
-        [
+        "list": [
             {
                 "colorScheme": "Campbell Powershell",
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
+                "commandline": "%SystemRoot%\\System32\\cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": true,
                 "name": "Command Prompt"
@@ -85,30 +63,20 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
-                "colorScheme": "Campbell Powershell",
-                "commandline": "powershell.exe -ExecutionPolicy ByPass -NoExit -Command \"& '~\\miniconda3\\shell\\condabin\\conda-hook.ps1' ; conda activate '~\\miniconda3'\"",
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6105}",
+                "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
                 "hidden": false,
-                "name": "Anaconda",
-                "startingDirectory": "%HOMEPATH%"
+                "name": "Git Bash",
+                "source": "Git"
             },
             {
-                "colorScheme": "Ubuntu-22.04-ColorScheme",
-                "commandline": "ubuntu2204.exe",
-                "cursorShape": "filledBox",
-                "font": {
-                    "size": 13.0
-                },
-                "guid": "{f3ddc346-3d79-436b-83d4-96b42ac63267}",
+                "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
                 "hidden": false,
-                "icon": "https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png",
-                "name": "Ubuntu 22.04.3 LTS",
-                "tabTitle": "Ubuntu 22.04.3 LTS"
+                "name": "Ubuntu",
+                "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
             }
         ]
     },
-    "schemes":
-    [
+    "schemes": [
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
@@ -309,7 +277,7 @@
             "cyan": "#3A96DD",
             "foreground": "#FFFFFF",
             "green": "#26A269",
-            "name": "Ubuntu-22.04-ColorScheme",
+            "name": "Ubuntu-ColorScheme",
             "purple": "#881798",
             "red": "#C21A23",
             "selectionBackground": "#FFFFFF",
@@ -340,6 +308,5 @@
             "yellow": "#808000"
         }
     ],
-    "themes": [],
-    "trimBlockSelection": true
+    "themes": []
 }
