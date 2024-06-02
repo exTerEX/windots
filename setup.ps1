@@ -53,31 +53,6 @@ function Set-Softlink {
     }
 }
 
-function Get-Zip {
-    param ([parameter(Mandatory)][string]$Uri, [string]$DestinationPath = "$HOME/Downloads", [switch]$Extract)
-
-    PROCESS {
-        $ZippedFilePath = "$DestinationPath\$(Split-Path -Path $Uri -Leaf)"
-
-        $FileNameWithoutExtension = [System.IO.Path]::GetFileNameWithoutExtension($ZippedFilePath)
-
-        # TODO: Switch statement to control local cache behaviour
-        # Use local copy if available
-        if (!(Test-Path -Path $ZippedFilePath)) {
-            Write-Host "Using local available cache for package: $FileNameWithoutExtension..." -ForegroundColor Blue
-            Invoke-WebRequest -Uri $Uri -OutFile $ZippedFilePath
-        }
-
-        if ($Extract) {
-            $ExtractPath = "$DestinationPath\$FileNameWithoutExtension"
-
-            Expand-Archive -LiteralPath $ZippedFilePath -DestinationPath $ExtractPath
-
-            return $ExtractPath
-        }
-    }
-}
-
 function Find-Installed( $programName ) {
     $x86_check = ((Get-ChildItem "HKLM:Software\Microsoft\Windows\CurrentVersion\Uninstall") |
         Where-Object { $_."Name" -like "*$programName*" } ).Length -gt 0;
@@ -101,9 +76,6 @@ New-Directory -Path "$HOME\.config" -Hide
 # Windows
 Invoke-Expression -Command "$PSScriptRoot\windows\setup.ps1"
 
-# Scoop
-Invoke-Expression -Command "$PSScriptRoot\scoop\setup.ps1"
-
 # Winget
 Invoke-Expression -Command "$PSScriptRoot\winget\setup.ps1"
 
@@ -113,17 +85,11 @@ Invoke-Expression -Command "$PSScriptRoot\vscode\setup.ps1"
 # Git
 Invoke-Expression -Command "$PSScriptRoot\git\setup.ps1"
 
-# SSH
-Invoke-Expression -Command "$PSScriptRoot\ssh\setup.ps1"
-
 # Powershell
 Invoke-Expression -Command "$PSScriptRoot\powershell\setup.ps1"
 
 # Anaconda / Miniconda
 Invoke-Expression -Command "$PSScriptRoot\conda\setup.ps1"
-
-# pymol
-Invoke-Expression -Command "$PSScriptRoot\pymol\setup.ps1"
 
 # Bash
 Invoke-Expression -Command "$PSScriptRoot\bash\setup.ps1"
@@ -134,13 +100,7 @@ Invoke-Expression -Command "$PSScriptRoot\wsl\setup.ps1"
 # Windows terminal
 Invoke-Expression -Command "$PSScriptRoot\terminal\setup.ps1"
 
-# GnuPG
-Invoke-Expression -Command "$PSScriptRoot\gnupg\setup.ps1"
-
 # GPG
 Invoke-Expression -Command "$PSScriptRoot\gpg\setup.ps1"
-
-# R
-Invoke-Expression -Command "$PSScriptRoot\R\setup.ps1"
 
 Write-Host "Setup finished." -ForegroundColor Green

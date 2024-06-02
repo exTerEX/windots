@@ -1,5 +1,8 @@
 #!/usr/bin/env pwsh
 
+#Install Powertoys
+# TODO: Install
+
 # Remove previous settings file
 Remove-Item -Path "$ENV:LOCALAPPDATA\Microsoft\PowerToys" -Force
 

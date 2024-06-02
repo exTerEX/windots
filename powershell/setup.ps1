@@ -4,32 +4,15 @@
 Set-Item -Path env:powershell -Value "C:\Windows\System32\WindowsPowerShell\v1.0"
 Set-Item -Path env:pwsh -Value env:powershell
 
-# Install PackageManagement
-if (!(Get-Module -ListAvailable -Name PackageManagement)) {
-    Install-Module -Name PackageManagement -Repository PSGallery
-}
-
-# Install posh-git
-if (!(Get-Module -ListAvailable -Name posh-git)) {
-    Install-Module posh-git -Repository PSGallery
-}
-
 # Install oh-my-posh
-if (!(Get-Module -ListAvailable -Name oh-my-posh)) {
-    Install-Module oh-my-posh -Repository PSGallery
+# TODO: Install winstore instead of exe?
+if (!(where.exe oh-my-posh)) {
+    # TODO: Allow interactive, see issue #8
+    winget install JanDeDobbeleer.OhMyPosh --scope=machine --architecture=x64
 }
 
 # Install fonts
-$Uri = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip"
-New-Directory -Path "$env:programfiles (x86)\WindowsPowerShell\Cache" | Out-Null
-$FilePath = Get-Zip -Uri $Uri -DestinationPath "$env:programfiles (x86)\WindowsPowerShell\Cache" -Extract
-
-# TODO: Modify so the object is not installed if already installed
-$fonts = (New-Object -ComObject Shell.Application).Namespace(0x14)
-Get-ChildItem -Path $FilePath -Recurse -include *.ttf | ForEach-Object { $fonts.CopyHere($_.fullname) }
-
-# Remove extracted fonts folder
-Remove-Item -Path $FilePath -Recurse -Force | Out-Null
+oh-my-posh font install # TODO: Specify font
 
 # Create softlink to 'profile.ps1'.
 Set-Softlink -Path "$env:powershell\profile.ps1" -Target "$PSScriptRoot\profile.ps1"

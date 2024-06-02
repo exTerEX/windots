@@ -1,3 +1,6 @@
+# Load Oh-My-Posh
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\default.omp.json" | Invoke-Expression
+
 # Easier Navigation: .., ..., ...., ....., and ~
 ${function:~} = { Set-Location ~ }
 ${function:Set-ParentLocation} = { Set-Location .. }; Set-Alias ".." Set-ParentLocation
@@ -31,12 +34,3 @@ function Get-DiskUsage([string] $path = (Get-Location).Path) {
     ).Sum `
         1
 }
-
-# Import posh-git
-Import-Module posh-git
-
-# Import oh-my-posh
-Import-Module oh-my-posh
-
-# Set oh-my-posh theme
-Set-PoshPrompt -Theme craver

@@ -1,7 +1,8 @@
 #!/usr/bin/env pwsh
 
 # Install git
-if (!(where.exe git)) { # TODO: Allow interactive, see issue #8
+if (!(where.exe git)) {
+    # TODO: Allow interactive, see issue #8
     winget install Git.Git --scope=machine --architecture=x64
 }
 

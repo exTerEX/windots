@@ -1,7 +1,0 @@
-# git-crypt
-* !filter !diff
-*.gpg binary
-git-crypt-secret filter=git-crypt diff=git-crypt
-*secret* filter=git-crypt diff=git-crypt
-*.key filter=git-crypt diff=git-crypt
-*.asc filter=git-crypt diff=git-crypt
