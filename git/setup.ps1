@@ -9,17 +9,17 @@ if (!(where.exe git)) {
 # Create related directories
 New-Directory -Path "$HOME\.config\git"
 
-# Create softlink to 'config' and hide it.
+# Create softlink to 'config'.
 Set-Softlink -Path "$HOME\.config\git\config" -Target "$PSScriptRoot\config"
 
-# Create softlink to 'gitconfig' and hide it.
+# Create softlink to 'gitconfig'.
 Set-Softlink -Path "$env:programfiles\git\etc\gitconfig" -Target "$PSScriptRoot\gitconfig"
 
-# Create softlink to '.gitignore' and hide it.
+# Create softlink to '.gitignore'.
 Set-Softlink -Path "$HOME\.config\git\.gitignore" -Target "$PSScriptRoot\.gitignore"
 
-# Create softlink to '.gitattributes' and hide it.
+# Create softlink to '.gitattributes'.
 Set-Softlink -Path "$HOME\.config\git\.gitattributes" -Target "$PSScriptRoot\.gitattributes"
 
-# Create softlink to '.gitmessage' and hide it.
+# Create softlink to '.gitmessage'.
 Set-Softlink -Path "$HOME\.config\git\.gitmessage" -Target "$PSScriptRoot\.gitmessage"
