@@ -8,11 +8,6 @@
 [core]
 	excludesfile = ~/.config/git/.gitignore
 	attributesfile = ~/.config/git/.gitattributes
-	fileMode = true
-	hidedotfiles = false
-	protectntfs = true
-	safecrlf = warn
-	fsmonitor = true
 [github]
 	user = exterex
 [color]
@@ -35,16 +30,10 @@
 	submoduleSummary = true
 [diff]
 	submodule = log
-[default]
-	protocol = ssh
 [gpg]
 	program = C:/Program Files (x86)/gnupg/bin/gpg
 [tag]
 	forcesignannotated = true
 [submodule]
 	recurse = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+

@@ -8,8 +8,13 @@
 [http]
 	sslBackend = schannel
 [core]
-	autocrlf = input
+	fileMode = true
+	fsmonitor = true
 	fscache = true
+	autocrlf = input
+	hidedotfiles = false
+	protectntfs = true
+	safecrlf = warn
 	symlinks = true
 	editor = code --wait
 	useBuiltinFSMonitor = true
@@ -23,3 +28,5 @@
 	helper = manager-core
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[alias]
+	credential-manager = "credential-manager-core"
