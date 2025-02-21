@@ -91,9 +91,6 @@ Invoke-Expression -Command "$PSScriptRoot\powershell\setup.ps1"
 # Anaconda / Miniconda
 Invoke-Expression -Command "$PSScriptRoot\conda\setup.ps1"
 
-# Bash
-Invoke-Expression -Command "$PSScriptRoot\bash\setup.ps1"
-
 # WSL
 Invoke-Expression -Command "$PSScriptRoot\wsl\setup.ps1"
 
