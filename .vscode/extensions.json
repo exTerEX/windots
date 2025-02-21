@@ -1,6 +1,5 @@
 {
     "recommendations": [
-        "ms-vscode.powershell",
-        "docsmsft.docs-markdown"
+        "ms-vscode.powershell"
     ]
 }

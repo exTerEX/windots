@@ -17,12 +17,6 @@
         ".gitmessage": "git-commit"
     },
     "files.exclude": {
-        "**/.git": true,
-        "powertoys/**/*Interface": true,
-        "powertoys/**/*Logs": true,
-        "powertoys/PowerToys/*-*.json": true,
-        "powertoys/PowerToys/*_*.json": true,
-        "powertoys/PowerToys/UpdateState.json": true,
-        "powertoys/**/*.log": true
+        "**/.git": true
     }
 }
