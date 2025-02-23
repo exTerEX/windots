@@ -1,7 +1,7 @@
 [user]
 	name = exTerEX
 	email = 30706568+exTerEX@users.noreply.github.com
-	singingkey = B0C04CF48CEB0CAB
+	singingkey = A2893BF0F2DF1B57
 [commit]
 	gpgsign = true
 	template = ~/.config/git/.gitmessage
@@ -31,8 +31,9 @@
 [diff]
 	submodule = log
 [gpg]
-	program = C:/Program Files (x86)/gnupg/bin/gpg
+	program = gpg
 [tag]
 	forcesignannotated = true
+	gpgSign = true
 [submodule]
 	recurse = true

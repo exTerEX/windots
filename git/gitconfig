@@ -10,21 +10,19 @@
 [core]
 	fileMode = true
 	fsmonitor = true
-	fscache = true
-	autocrlf = input
+	autocrlf = true
 	hidedotfiles = false
 	protectntfs = true
 	safecrlf = warn
+	fscache = true
 	symlinks = true
-	editor = code --wait
 	useBuiltinFSMonitor = true
+	editor = code --wait
 [pull]
 	rebase = false
-[init]
-	defaultBranch = main
-[help]
-	autocorrect = 1
 [credential]
-	helper = manager-core
+	helper = manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[init]
+	defaultBranch = main
