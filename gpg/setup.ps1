@@ -8,10 +8,4 @@ if (!(where.exe gpg)) {
 # Create related directories
 New-Directory -Path "$HOME\.gpg" -Hide
 
-# TODO: Add encrypted .gpg signing keys after cleanup
-
-# Create softlink to 'public_keys.gpg'.
-#Set-Softlink -Path "$HOME\.gpg\public_keys.gpg" -Target "$PSScriptRoot\public_keys.gpg"
-
-# Create softlink to 'private_keys.gpg'.
-#Set-Softlink -Path "$HOME\.gpg\private_keys.gpg" -Target "$PSScriptRoot\private_keys.gpg"
+# TODO: Make automatic setup of GPG keys

@@ -31,7 +31,7 @@
 [diff]
 	submodule = log
 [gpg]
-	program = gpg
+	program = C:/Program Files (x86)/GnuPG/bin/gpg.exe
 [tag]
 	forcesignannotated = true
 	gpgSign = true

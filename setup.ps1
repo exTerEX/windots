@@ -68,16 +68,11 @@ function Find-Installed( $programName ) {
 Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
 # Create directories
-New-Directory -Path "$HOME\.aws" -Hide
-New-Directory -Path "$HOME\.azure" -Hide
 New-Directory -Path "$HOME\repo"
 New-Directory -Path "$HOME\.config" -Hide
 
 # Windows
 Invoke-Expression -Command "$PSScriptRoot\windows\setup.ps1"
-
-# Winget
-Invoke-Expression -Command "$PSScriptRoot\winget\setup.ps1"
 
 # Visual Studio Code
 Invoke-Expression -Command "$PSScriptRoot\vscode\setup.ps1"
@@ -88,8 +83,8 @@ Invoke-Expression -Command "$PSScriptRoot\git\setup.ps1"
 # Powershell
 Invoke-Expression -Command "$PSScriptRoot\powershell\setup.ps1"
 
-# Anaconda / Miniconda
-Invoke-Expression -Command "$PSScriptRoot\conda\setup.ps1"
+# PowerToys
+Invoke-Expression -Command "$PSScriptRoot\powertoys\setup.ps1"
 
 # WSL
 Invoke-Expression -Command "$PSScriptRoot\wsl\setup.ps1"
