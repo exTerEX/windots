@@ -5,7 +5,6 @@ Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 
 # Install OMP
 if (!(where.exe oh-my-posh)) {
-    # TODO: Allow interactive, see issue #8
     winget install JanDeDobbeleer.OhMyPosh --scope=machine --architecture=x64
 }
 
