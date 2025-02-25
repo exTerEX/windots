@@ -14,7 +14,8 @@
     "files.associations": {
         ".bash_*": "shellscript",
         "config": "properties",
-        ".gitmessage": "git-commit"
+        ".gitmessage": "git-commit",
+        ".wslconfig": "shellscript",
     },
     "files.exclude": {
         "**/.git": true
