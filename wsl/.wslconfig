@@ -1,8 +1,17 @@
+# Settings apply across all Linux distros running on WSL 2
 [wsl2]
-memory=4GB
 processors=4
-localhostForwarding=true
-swap=2GB
-swapFile=%USERPROFILE%\AppData\Local\Temp\swap.vhdx
+memory=4GB
+swap=8GB
+swapfile=C:\\temp\\wsl-swap.vhdx
+# Disable page reporting so WSL retains all allocated memory claimed from Windows and releases none back when free
+pageReporting=false
+# Turn on default connection to bind WSL 2 localhost to Windows localhost
+localhostforwarding=true
+nestedVirtualization=false
 guiApplications=true
-nestedVirtualization=true
+
+# Enable experimental features
+[experimental]
+autoMemoryReclaim=gradual
+sparseVhd=true
