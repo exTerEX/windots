@@ -7,5 +7,10 @@ if (!(where.exe gpg)) {
 
 # Create related directories
 New-Directory -Path "$HOME\.gpg" -Hide
+New-Directory -Path "$HOME\.gnupg" -Hide
+
+# GnuPG Settings
+Set-Softlink -Path "$HOME\.gnupg\gpg.conf" -Target "$PSScriptRoot\gpg.conf"
+Set-Softlink -Path "$HOME\.gnupg\common.conf" -Target "$PSScriptRoot\common.conf"
 
 # TODO: Make automatic setup of GPG keys
